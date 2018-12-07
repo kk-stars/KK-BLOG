@@ -1,0 +1,498 @@
+---------------------------------------------------------------
+[ 2018-07-24T18:18:39+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/index
+[ info ] localhost/kk-blog/index [运行时间：23.068689s][吞吐率：0.04req/s] [内存消耗：2,237.88kb] [文件加载：57]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [0]Redis server went away[G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\library\think\cache\driver\Redis.php:70]
+---------------------------------------------------------------
+[ 2018-07-24T18:19:04+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/babysbreath/login/login.html
+[ info ] localhost/kk-blog/babysbreath/login/login.html [运行时间：48.680629s][吞吐率：0.02req/s] [内存消耗：2,027.40kb] [文件加载：54]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'babysbreath',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\babysbreath\controller\Login->login[ G:\PHPWAMP_IN2\wwwroot\kk-blog\application\babysbreath\controller\Login.php ]
+[ info ] [ VIEW ] G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\login\login.html [ array (
+  0 => 'conf',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:18.556198s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:10.539957s ]
+[ sql ] [ SQL ] SELECT * FROM `config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.300270s ]
+---------------------------------------------------------------
+[ 2018-07-24T23:31:44+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/public/static/admin/login/js/jquery.min.map
+[ info ] localhost/kk-blog/public/static/admin/login/js/jquery.min.map [运行时间：0.059249s][吞吐率：16.88req/s] [内存消耗：1,147.17kb] [文件加载：40]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'public',
+    1 => 'static',
+    2 => 'admin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=ia6065r67eod137ogngast5592',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'login' => 'js',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-24T23:31:44+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/babysbreath/login/performance-now.js.map
+[ info ] localhost/kk-blog/babysbreath/login/performance-now.js.map [运行时间：0.160262s][吞吐率：6.24req/s] [内存消耗：1,991.37kb] [文件加载：54]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'babysbreath',
+    1 => 'login',
+    2 => 'performance-now.js.map',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=ia6065r67eod137ogngast5592',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.054107s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.051047s ]
+[ sql ] [ SQL ] SELECT * FROM `config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001325s ]
+---------------------------------------------------------------
+[ 2018-07-24T23:32:50+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/babysbreath/login/login.html
+[ info ] localhost/kk-blog/babysbreath/login/login.html [运行时间：0.198591s][吞吐率：5.04req/s] [内存消耗：2,027.39kb] [文件加载：54]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'babysbreath',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\babysbreath\controller\Login->login[ G:\PHPWAMP_IN2\wwwroot\kk-blog\application\babysbreath\controller\Login.php ]
+[ info ] [ VIEW ] G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\login\login.html [ array (
+  0 => 'conf',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.008640s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.111998s ]
+[ sql ] [ SQL ] SELECT * FROM `config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000486s ]
+---------------------------------------------------------------
+[ 2018-07-24T23:32:52+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/index
+[ info ] localhost/kk-blog/index [运行时间：2.106742s][吞吐率：0.47req/s] [内存消耗：2,237.89kb] [文件加载：57]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [0]Redis server went away[G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\library\think\cache\driver\Redis.php:70]
+---------------------------------------------------------------
+[ 2018-07-24T23:55:27+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/index
+[ info ] localhost/kk-blog/index [运行时间：2.777278s][吞吐率：0.36req/s] [内存消耗：2,647.87kb] [文件加载：60]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=h5pa849jq61b1lm7bd5li8l3s4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT redis
+[ info ] [ RUN ] app\index\controller\Index->index[ G:\PHPWAMP_IN2\wwwroot\kk-blog\application\index\controller\Index.php ]
+[ info ] [ VIEW ] G:\PHPWAMP_IN2\wwwroot\kk-blog/application/index\view\index\index.html [ array (
+  0 => 'conf',
+  1 => 'cate',
+  2 => 'rightCate',
+  3 => 'about',
+  4 => 'comtArticles',
+  5 => 'heatArticles',
+  6 => 'praiseArticles',
+  7 => 'slider',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.014601s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `cate` [ RunTime:0.070461s ]
+[ sql ] [ SQL ] SELECT `cateName`,`cateId` FROM `cate` WHERE  `cateArticles` <> 0 [ RunTime:0.084734s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.004024s ]
+[ sql ] [ SQL ] UPDATE `config`  SET `visit`=visit+1  WHERE  `id` = 1 [ RunTime:0.561371s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `comment` [ RunTime:0.174614s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 32 LIMIT 1 [ RunTime:0.113902s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `article` [ RunTime:0.001685s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 32 [ RunTime:0.113039s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 38 LIMIT 1 [ RunTime:0.000508s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 38 [ RunTime:0.036634s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 47 LIMIT 1 [ RunTime:0.000531s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 47 [ RunTime:0.019229s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 25 LIMIT 1 [ RunTime:0.000491s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 25 [ RunTime:0.022862s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 30 LIMIT 1 [ RunTime:0.000506s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 30 [ RunTime:0.018754s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 31 LIMIT 1 [ RunTime:0.000470s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 31 [ RunTime:0.022705s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 33 LIMIT 1 [ RunTime:0.000523s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 33 [ RunTime:0.019055s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 35 LIMIT 1 [ RunTime:0.000542s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 35 [ RunTime:0.022758s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 36 LIMIT 1 [ RunTime:0.000562s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 36 [ RunTime:0.018855s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 39 LIMIT 1 [ RunTime:0.000539s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 39 [ RunTime:0.022679s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 40 LIMIT 1 [ RunTime:0.000583s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 40 [ RunTime:0.018300s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 41 LIMIT 1 [ RunTime:0.000454s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 41 [ RunTime:0.022936s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 42 LIMIT 1 [ RunTime:0.000551s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 42 [ RunTime:0.018827s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 44 LIMIT 1 [ RunTime:0.000330s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 44 [ RunTime:0.022970s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 9 LIMIT 1 [ RunTime:0.000540s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 9 [ RunTime:0.063114s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 10 LIMIT 1 [ RunTime:0.000587s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 10 [ RunTime:0.022830s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 12 LIMIT 1 [ RunTime:0.000686s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 12 [ RunTime:0.018577s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 19 LIMIT 1 [ RunTime:0.000567s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 19 [ RunTime:0.022295s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 20 LIMIT 1 [ RunTime:0.000563s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 20 [ RunTime:0.018701s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 22 LIMIT 1 [ RunTime:0.000504s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 22 [ RunTime:0.023100s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 7 LIMIT 1 [ RunTime:0.000926s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 7 [ RunTime:0.017824s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 8 LIMIT 1 [ RunTime:0.000507s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 8 [ RunTime:0.022863s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 13 LIMIT 1 [ RunTime:0.000560s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 13 [ RunTime:0.018892s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 21 LIMIT 1 [ RunTime:0.000684s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 21 [ RunTime:0.022587s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 1 LIMIT 1 [ RunTime:0.000525s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 1 [ RunTime:0.018778s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 2 LIMIT 1 [ RunTime:0.000520s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 2 [ RunTime:0.022889s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 3 LIMIT 1 [ RunTime:0.000480s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 3 [ RunTime:0.018841s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 4 LIMIT 1 [ RunTime:0.000467s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 4 [ RunTime:0.023024s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 5 LIMIT 1 [ RunTime:0.000429s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 5 [ RunTime:0.018590s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 6 LIMIT 1 [ RunTime:0.000571s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 6 [ RunTime:0.022184s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 11 LIMIT 1 [ RunTime:0.000457s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 11 [ RunTime:0.019017s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 14 LIMIT 1 [ RunTime:0.000983s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 14 [ RunTime:0.022042s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 15 LIMIT 1 [ RunTime:0.000668s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 15 [ RunTime:0.018060s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 16 LIMIT 1 [ RunTime:0.000474s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 16 [ RunTime:0.022988s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 17 LIMIT 1 [ RunTime:0.000502s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 17 [ RunTime:0.018959s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 18 LIMIT 1 [ RunTime:0.000820s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 18 [ RunTime:0.055328s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 24 LIMIT 1 [ RunTime:0.000461s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 24 [ RunTime:0.084768s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 46 LIMIT 1 [ RunTime:0.000388s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 46 [ RunTime:0.034401s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 29 LIMIT 1 [ RunTime:0.000539s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 29 [ RunTime:0.018329s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 34 LIMIT 1 [ RunTime:0.000555s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 34 [ RunTime:0.022959s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 37 LIMIT 1 [ RunTime:0.000710s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 37 [ RunTime:0.018194s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 23 LIMIT 1 [ RunTime:0.000476s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 23 [ RunTime:0.033831s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 26 LIMIT 1 [ RunTime:0.000327s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 26 [ RunTime:0.030208s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 45 LIMIT 1 [ RunTime:0.000273s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 45 [ RunTime:0.034370s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 43 LIMIT 1 [ RunTime:0.000527s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 43 [ RunTime:0.040923s ]
+---------------------------------------------------------------
+[ 2018-07-24T23:55:31+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/index/index/flow?page=1
+[ info ] localhost/kk-blog/index/index/flow?page=1 [运行时间：1.305162s][吞吐率：0.77req/s] [内存消耗：2,710.76kb] [文件加载：57]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'index',
+    2 => 'flow',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=h5pa849jq61b1lm7bd5li8l3s4; ip_127001=127.0.0.1',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/kk-blog/index',
+  'accept' => '*/*',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT redis
+[ info ] [ RUN ] app\index\controller\Index->flow[ G:\PHPWAMP_IN2\wwwroot\kk-blog\application\index\controller\Index.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.005720s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `cate` [ RunTime:0.001624s ]
+[ sql ] [ SQL ] SELECT `cateName`,`cateId` FROM `cate` WHERE  `cateArticles` <> 0 [ RunTime:0.000480s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `comment` [ RunTime:0.001326s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 32 LIMIT 1 [ RunTime:0.000465s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `article` [ RunTime:0.001290s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 32 [ RunTime:0.074067s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 38 LIMIT 1 [ RunTime:0.000461s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 38 [ RunTime:0.030430s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 47 LIMIT 1 [ RunTime:0.000474s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 47 [ RunTime:0.022311s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 25 LIMIT 1 [ RunTime:0.000732s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 25 [ RunTime:0.018717s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 30 LIMIT 1 [ RunTime:0.000484s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 30 [ RunTime:0.022209s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 31 LIMIT 1 [ RunTime:0.000429s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 31 [ RunTime:0.019375s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 33 LIMIT 1 [ RunTime:0.000536s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 33 [ RunTime:0.022491s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 35 LIMIT 1 [ RunTime:0.000645s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 35 [ RunTime:0.019236s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 36 LIMIT 1 [ RunTime:0.000533s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 36 [ RunTime:0.022382s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 39 LIMIT 1 [ RunTime:0.000469s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 39 [ RunTime:0.019288s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 40 LIMIT 1 [ RunTime:0.000551s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 40 [ RunTime:0.022325s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 41 LIMIT 1 [ RunTime:0.000493s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 41 [ RunTime:0.030096s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 42 LIMIT 1 [ RunTime:0.000435s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 42 [ RunTime:0.021327s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 44 LIMIT 1 [ RunTime:0.000466s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 44 [ RunTime:0.020731s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 9 LIMIT 1 [ RunTime:0.000567s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 9 [ RunTime:0.021095s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 10 LIMIT 1 [ RunTime:0.000541s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 10 [ RunTime:0.020457s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 12 LIMIT 1 [ RunTime:0.000313s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 12 [ RunTime:0.021651s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 19 LIMIT 1 [ RunTime:0.000451s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 19 [ RunTime:0.020709s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 20 LIMIT 1 [ RunTime:0.000577s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 20 [ RunTime:0.020979s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 22 LIMIT 1 [ RunTime:0.000473s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 22 [ RunTime:0.020661s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 7 LIMIT 1 [ RunTime:0.000532s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 7 [ RunTime:0.021104s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 8 LIMIT 1 [ RunTime:0.000706s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 8 [ RunTime:0.020002s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 13 LIMIT 1 [ RunTime:0.000455s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 13 [ RunTime:0.021103s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 21 LIMIT 1 [ RunTime:0.000720s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 21 [ RunTime:0.019901s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 1 LIMIT 1 [ RunTime:0.000487s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 1 [ RunTime:0.020997s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 2 LIMIT 1 [ RunTime:0.000491s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 2 [ RunTime:0.020620s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 3 LIMIT 1 [ RunTime:0.000463s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 3 [ RunTime:0.021077s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 4 LIMIT 1 [ RunTime:0.000465s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 4 [ RunTime:0.020300s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 5 LIMIT 1 [ RunTime:0.000714s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 5 [ RunTime:0.020336s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 6 LIMIT 1 [ RunTime:0.000465s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 6 [ RunTime:0.020841s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 11 LIMIT 1 [ RunTime:0.000760s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 11 [ RunTime:0.020277s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 14 LIMIT 1 [ RunTime:0.000451s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 14 [ RunTime:0.020778s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 15 LIMIT 1 [ RunTime:0.000430s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 15 [ RunTime:0.020889s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 16 LIMIT 1 [ RunTime:0.000719s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 16 [ RunTime:0.020017s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 17 LIMIT 1 [ RunTime:0.000577s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 17 [ RunTime:0.020442s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 18 LIMIT 1 [ RunTime:0.000296s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 18 [ RunTime:0.021091s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 24 LIMIT 1 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 24 [ RunTime:0.021517s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 46 LIMIT 1 [ RunTime:0.000607s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 46 [ RunTime:0.020092s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 29 LIMIT 1 [ RunTime:0.000532s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 29 [ RunTime:0.020756s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 34 LIMIT 1 [ RunTime:0.000463s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 34 [ RunTime:0.020959s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 37 LIMIT 1 [ RunTime:0.000850s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 37 [ RunTime:0.019611s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 23 LIMIT 1 [ RunTime:0.000328s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 23 [ RunTime:0.020927s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 26 LIMIT 1 [ RunTime:0.000446s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 26 [ RunTime:0.021263s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 45 LIMIT 1 [ RunTime:0.000816s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 45 [ RunTime:0.019469s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 43 LIMIT 1 [ RunTime:0.000351s ]
+[ sql ] [ SQL ] UPDATE `article`  SET `articleComments`=0  WHERE  `articleId` = 43 [ RunTime:0.020949s ]
+---------------------------------------------------------------
+[ 2018-07-24T23:55:34+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/performance-now.js.map
+[ info ] localhost/kk-blog/performance-now.js.map [运行时间：0.027680s][吞吐率：36.13req/s] [内存消耗：1,146.95kb] [文件加载：40]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'performance-now.js.map',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=h5pa849jq61b1lm7bd5li8l3s4; ip_127001=127.0.0.1',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File

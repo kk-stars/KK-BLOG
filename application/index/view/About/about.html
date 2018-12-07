@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>关于我 — {$conf.title}</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="{$conf.keywords}">
+    <meta name="description" content="{$conf.title}">
+    <LINK rel="Bookmark" href="__PUBLIC__index/h.png">
+    <LINK rel="Shortcut Icon" href="__PUBLIC__index/h.png"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/plugin/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/plugin/Hui-iconfont/1.0.8/iconfont.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/plugin/pifu/pifu.css"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+
+    function showSide() {
+        $('.navbar-nav').toggle();
+    }</script>
+</head>
+<body>
+{include file="Public/header"}
+
+<!--导航条-->
+<nav class="breadcrumb">
+    <div class="container">
+        <i class="Hui-iconfont">&#xe67f;</i>
+        <a href="index.html" class="c-primary">首页</a>
+        <span class="c-gray en">&gt;</span>
+        <span class="c-gray">关于</span>
+    </div>
+</nav>
+
+<section class="container">
+    <div class="container-fluid">
+        <div class="about">
+            <h2 style="font-size:30px;">Just about me</h2>
+            <ul style="font-size:16px;">
+                <p>{$about.aboutMe}<img src="__PUBLIC__index/img/GIF/ku.gif" alt="" height="auto" style="height: auto;" original="__PUBLIC__index/images/page.gif"></p>
+            </ul>
+            <h2 style="font-size:30px;">About my blog</h2>
+            <ul style="font-size:16px;">
+                <p>域 名：{$conf.url} 注册于2017年02月02日</p>
+                <p>服务器：阿里云服务器 ，于2017年02月23日完成备案</p>
+                <p>备案号：{$conf.beian}</p>
+                <p><img src="__PUBLIC__index/img/GIF/fo.gif" alt="" height="auto" style="height: auto;" original="__PUBLIC__index/images/page.gif">{$conf.description}<img src="__PUBLIC__index/img/GIF/Q.gif" alt="" height="auto" style="height: auto;" original="__PUBLIC__index/images/page.gif"></p>
+            </ul>
+            <h2 style="font-size:30px;">Contact me</h2>
+            <ul style="font-size:16px;">
+                <p><i class="Hui-iconfont">&#xe67b;</i>qq : {$about.qq}</p>
+                <p><i class="Hui-iconfont">&#xe6d1;</i>git : {$about.github}</p>
+                <p><i class="Hui-iconfont">&#xe63b;</i>email : {$conf.email}</p>
+            </ul>
+        </div>
+
+    </div>
+</section>
+{include file="Public/footer"}
+
+<script type="text/javascript" src="plugin/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="plugin/layer/3.0/layer.js"></script>
+<script type="text/javascript" src="plugin/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="plugin/pifu/pifu.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script> $(function () {
+    $(window).on("scroll", backToTopFun);
+    backToTopFun();
+}); </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+---------------------------------------------------------------
+[ 2018-08-08T11:49:48+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/babysbreath/login/login.html
+[ info ] localhost/kk-blog/babysbreath/login/login.html [运行时间：16.275416s][吞吐率：0.06req/s] [内存消耗：2,027.70kb] [文件加载：54]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'babysbreath',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'province_id=33007; city_id=33681; district_id=33701',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\babysbreath\controller\Login->login[ G:\PHPWAMP_IN2\wwwroot\kk-blog\application\babysbreath\controller\Login.php ]
+[ info ] [ VIEW ] G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\login\login.html [ array (
+  0 => 'conf',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:2.390678s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.774610s ]
+[ sql ] [ SQL ] SELECT * FROM `config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000670s ]
+---------------------------------------------------------------
+[ 2018-08-08T12:03:25+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/babysbreath/login/login.html
+[ info ] localhost/kk-blog/babysbreath/login/login.html [运行时间：0.067891s][吞吐率：14.73req/s] [内存消耗：2,027.71kb] [文件加载：54]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'babysbreath',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'province_id=33007; city_id=33681; district_id=33701',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\babysbreath\controller\Login->login[ G:\PHPWAMP_IN2\wwwroot\kk-blog\application\babysbreath\controller\Login.php ]
+[ info ] [ VIEW ] G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\login\login.html [ array (
+  0 => 'conf',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003567s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.002248s ]
+[ sql ] [ SQL ] SELECT * FROM `config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000606s ]
+---------------------------------------------------------------
+[ 2018-08-08T20:32:47+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/babysbreath/login/login.html
+[ info ] localhost/kk-blog/babysbreath/login/login.html [运行时间：26.572560s][吞吐率：0.04req/s] [内存消耗：2,027.71kb] [文件加载：54]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'babysbreath',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'province_id=33007; city_id=33681; district_id=33701',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\babysbreath\controller\Login->login[ G:\PHPWAMP_IN2\wwwroot\kk-blog\application\babysbreath\controller\Login.php ]
+[ info ] [ VIEW ] G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\login\login.html [ array (
+  0 => 'conf',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:1.793971s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:1.076897s ]
+[ sql ] [ SQL ] SELECT * FROM `config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.003658s ]

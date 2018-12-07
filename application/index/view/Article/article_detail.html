@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>文章详情 - {$conf.title}</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="{$conf.keywords}">
+    <meta name="description" content="{$conf.title}">
+    <LINK rel="Bookmark" href="__PUBLIC__index/h.png">
+    <LINK rel="Shortcut Icon" href="__PUBLIC__index/h.png"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/plugin/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/plugin/Hui-iconfont/1.0.8/iconfont.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/plugin/pifu/pifu.css"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+
+    function showSide() {
+        $('.navbar-nav').toggle();
+    }</script>
+</head>
+<body>
+{include file="Public/header"}
+
+<!--导航条-->
+<nav class="breadcrumb">
+    <div class="container">
+        <i class="Hui-iconfont">&#xe67f;</i>
+        <a href="index.html" class="c-primary">首页</a>
+        <span class="c-gray en">&gt;</span>
+        <span class="c-gray">文章</span>
+        <span class="c-gray en">&gt;</span>
+        <span class="c-gray">{$a.articleTitle}</span>
+    </div>
+</nav>
+
+<section class="container pt-20">
+
+    <div class="row w_main_row">
+        <div class="col-lg-9 col-md-9">
+            <div class="panel panel-default mb-20 w_main_left">
+                <div class="panel-body pt-10 pb-10">
+                    <h2 class="c_titile">{$a.articleTitle}</h2>
+                    <p class="box_c"><span class="d_time">发布时间：{$a.addTime}</span><span>编辑：
+                        <a href="mailto:wfyv@qq.com">{$a.ator}</a></span><span>阅读（{$a.articleClicks}）</span>
+                    </p>
+                    <ul class="infos">
+                        <p>
+                            {if condition="$a.articlePic neq null"}
+                            <img width="400px" src="__PUBLIC__{$a.articlePic}"/>
+                            {/if}
+                            {$a.articleContent}
+                        </p>
+                        <p>&nbsp;</p>
+                        <p align="center" class="pageLink"></p>
+
+                    </ul>
+
+                    <div class="keybq">
+                        <p><span>关键字</span>：
+                            {volist name="$a['articleKeywords']" id="ak"}
+                            <a class="label label-default" href="">{$ak}</a>
+                            {/volist}
+                        </p>
+                    </div>
+
+
+                    <div class="nextinfo">
+                        <p class="last">上一篇：
+                            {if condition="$up['articleId'] neq null"}
+                            <a href="article?aid={$up.articleId}">{$up.articleTitle}</a>
+                            {else /}
+                            <a href="javascript:;">没有了 :(</a>
+                            {/if}
+                        </p>
+
+                        <p class="next">下一篇：
+                            {if condition="$down['articleId'] neq null"}
+                            <a href="article?aid={$down.articleId}">{$down.articleTitle}</a>
+                            {else /}
+                            <a href="javascript:;">没有了 :(</a>
+                            {/if}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            {include file="article/comment"}
+        </div>
+        {include file="Public/right"}
+    </div>
+
+</section>
+{include file="Public/footer"}
+<script type="text/javascript" src="__PUBLIC__index/plugin/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__index/plugin/layer/3.0/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__index/plugin/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__index/plugin/pifu/pifu.js"></script>
+<script type="text/javascript" src="__PUBLIC__index/js/common.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__index/comment/js/jquery.flexText.js"></script>
+<script>
+    $(function () {
+        $(window).on("scroll", backToTopFun);
+        backToTopFun();
+    });
+</script>
+<script type="text/javascript" src="__PUBLIC__index/plugin/jquery.SuperSlide/2.1.1/jquery.SuperSlide.min.js"></script>
+<script>
+    $(function () {
+//幻灯片
+        jQuery(".slider_main .slider").slide({
+            mainCell: ".bd ul",
+            titCell: ".hd li",
+            trigger: "mouseover",
+            effect: "leftLoop",
+            autoPlay: true,
+            delayTime: 700,
+            interTime: 2000,
+            pnLoop: true,
+            titOnClassName: "active"
+        })
+//tips
+        jQuery(".slideTxtBox").slide({
+            titCell: ".hd ul",
+            mainCell: ".bd ul",
+            autoPage: true,
+            effect: "top",
+            autoPlay: true
+        });
+//标签
+        $(".tags a").each(function () {
+            var x = 9;
+            var y = 0;
+            var rand = parseInt(Math.random() * (x - y + 1) + y);
+            $(this).addClass("tags" + rand)
+        });
+
+        $("img.lazyload").lazyload({failurelimit: 3});
+    });
+
+</script>
+</body>
+
+</html>

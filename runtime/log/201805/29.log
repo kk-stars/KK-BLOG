@@ -1,0 +1,124 @@
+---------------------------------------------------------------
+[ 2018-05-29T09:06:07+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/index.php/admin/login/login.html
+[ info ] localhost/kk-blog/index.php/admin/login/login.html [运行时间：3.269618s][吞吐率：0.31req/s] [内存消耗：2,022.05kb] [文件加载：54]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'bdshare_firstime=1524986368638; PHPSESSID=31h57q2kmd1s837atlegc39cv2; ip_0000=0.0.0.0; ip_127001=127.0.0.1',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Login->login[ G:\PHPWAMP_IN2\wwwroot\kk-blog\application\admin\controller\Login.php ]
+[ info ] [ VIEW ] G:\PHPWAMP_IN2\wwwroot\kk-blog/application/admin\view\login\login.html [ array (
+  0 => 'conf',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003570s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.004786s ]
+[ sql ] [ SQL ] SELECT * FROM `config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000606s ]
+---------------------------------------------------------------
+[ 2018-05-29T09:06:08+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/public/static/index/assets/i/logo.png
+[ info ] localhost/kk-blog/public/static/index/assets/i/logo.png [运行时间：0.373309s][吞吐率：2.68req/s] [内存消耗：1,148.44kb] [文件加载：40]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'public',
+    1 => 'static',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'bdshare_firstime=1524986368638; PHPSESSID=31h57q2kmd1s837atlegc39cv2; ip_0000=0.0.0.0; ip_127001=127.0.0.1',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/kk-blog/index.php/admin/login/login.html',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'assets' => 'i',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-05-29T09:42:08+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/index
+[ info ] localhost/kk-blog/index [运行时间：1.102596s][吞吐率：0.91req/s] [内存消耗：2,286.48kb] [文件加载：57]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'bdshare_firstime=1524986368638; PHPSESSID=31h57q2kmd1s837atlegc39cv2; ip_0000=0.0.0.0; ip_127001=127.0.0.1',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/kk-blog/article?aid=45',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT redis
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002194s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.001632s ]
+[ sql ] [ SQL ] SELECT * FROM `config` LIMIT 1 [ RunTime:0.000587s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `cate` [ RunTime:0.000913s ]
+[ sql ] [ SQL ] SELECT * FROM `cate` WHERE  `status` = 1 [ RunTime:0.000566s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `aboutme` [ RunTime:0.001462s ]
+[ sql ] [ SQL ] SELECT * FROM `aboutme` WHERE  `meId` = 1 LIMIT 1 [ RunTime:0.001062s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `article` [ RunTime:0.000870s ]
+[ sql ] [ SQL ] SELECT * FROM `article` WHERE  `status` = 1 ORDER BY articleComments desc LIMIT 5 [ RunTime:0.001390s ]
+[ sql ] [ SQL ] SELECT * FROM `article` WHERE  `status` = 1 ORDER BY articleClicks desc LIMIT 5 [ RunTime:0.000745s ]
+[ sql ] [ SQL ] SELECT * FROM `article` WHERE  `status` = 1 ORDER BY praiseClicks desc LIMIT 5 [ RunTime:0.000589s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `friendshiplink` [ RunTime:0.003589s ]
+[ sql ] [ SQL ] SELECT * FROM `friendshiplink` WHERE  `status` = 1 [ RunTime:0.000473s ]
+[ sql ] [ SQL ] SELECT DISTINCT  `articleTags` FROM `article` WHERE  `status` = 1 [ RunTime:0.000543s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `message` [ RunTime:0.001138s ]
+[ sql ] [ SQL ] SELECT * FROM `message` WHERE  `status` = 1 LIMIT 5 [ RunTime:0.000468s ]
+[ sql ] [ SQL ] SELECT * FROM `cate` WHERE  `status` = 1 [ RunTime:0.001019s ]
+[ sql ] [ SQL ] SELECT `articleId` FROM `article` [ RunTime:0.000480s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `comment` [ RunTime:0.001320s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `comment` WHERE  `commentArticleid` = 32 LIMIT 1 [ RunTime:0.000677s ]
+[ error ] [0]Redis server went away[G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\library\think\cache\driver\Redis.php:82]

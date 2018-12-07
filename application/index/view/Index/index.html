@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>{$conf.title}</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="{$conf.keywords}">
+    <meta name="description" content="{$conf.title}">
+    <LINK rel="Bookmark" href="__PUBLIC__index/h.png">
+    <LINK rel="Shortcut Icon" href="__PUBLIC__index/h.png"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/plugin/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/plugin/Hui-iconfont/1.0.8/iconfont.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__index/plugin/pifu/pifu.css"/>
+    <script type="application/x-javascript">
+    addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+
+    function showSide() {
+        $('.navbar-nav').toggle();
+    }
+    </script>
+    <script type="text/javascript" src="__PUBLIC__index/js/ajax.js"></script>
+    <style>
+        .loadImg{
+            height: 29px;
+            margin-top: -4px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var oUl = document.getElementById('ul-article');
+            var iPage = 1;// 定义页数
+            var b = true;
+
+            getLi();
+
+            function getLi(){
+
+                var load = document.getElementById('load');// 加载
+                load.innerHTML = "点击加载更多";
+
+                ajax('get' , '__URL__/flow' , 'page=' + iPage , function (data) {
+                    var d = JSON.parse(data);
+                    //如果没有数据
+                    if(!d.data.length){
+                        var load = document.getElementById('load');// 加载
+                        load.innerHTML = '没有数据了 :(';
+                        load.setAttribute('style', 'pointer-events: none');
+                    }
+
+                    for (var i = 0 ; i < d.data.length ; i++){
+
+                        var ac = d.data[i].articleContent;
+
+                        var content = ac.replace(/<[^>]+>/g,"");//清除html标签
+                        //alert(content);return false;
+
+
+                        var strs={};
+
+                        strs.GetLength = function(str){
+                            var realLength = 0;
+                            var len = str.length;
+                            var charCode = -1;
+                            for(var i=0;i<len;i++){
+                                charCode = str.charCodeAt(i);
+                                if(charCode>0 && charCode<=128) realLength +=1;
+                                else realLength += 2;
+                            }
+                            return realLength;
+                        }
+                        strs.CutStr = function(str,len){
+                            var strLen = str.length;
+                            var char_length = 0;
+                            for (var j = 0; j < strLen; j++){
+                                var son_str = str.charCodeAt(j);
+                                (son_str > 0 && son_str <= 128) ? char_length += 1 : char_length += 2;
+                                if (char_length >= len){
+                                    newStr = str.substr(0, j+1) + "…";
+                                    return newStr;
+                                }
+                            }
+                        }
+                        if(strs.GetLength(content) > 230){
+                            var contt = strs.CutStr(content,230);//内容
+                        }else{
+                            var contt = content;
+                        }
+
+                        if(strs.GetLength(d.data[i].articleTitle) > 70){
+                            var articleTitle = strs.CutStr(d.data[i].articleTitle,70);//标题
+                        }else{
+                            var articleTitle = d.data[i].articleTitle;
+                        }
+
+                        var aid = d.data[i].articleId;
+                        var url = "article" + "?aid=" + aid;
+
+                        var cid = d.data[i].cateId;
+                        var cUrl = "cate" + "?cid=" + cid;
+
+                        if(d.data[i].praiseClicks == '' || d.data[i].praiseClicks === null){
+                            d.data[i].praiseClicks = 0;
+                        }
+
+                        if(d.data[i].articleClicks == '' || d.data[i].articleClicks === null){
+                            d.data[i].articleClicks = 0;
+                        }
+
+                        if(d.data[i].articlePic == '' || d.data[i].articlePic == null){
+
+                            var html = "<li class='index_arc_item no_pic'><h4 class='title'><a href='article?aid=" + d.data[i].articleId + "'>" + d.data[i].articleTitle + "</a></h4><div class='date_hits'><span>" + d.data[i].ator + "</span><span>" + d.data[i].addTime.substr(0,10) + "</span><span><a href='cate?cid=" + d.data[i].cateId + "'>" + d.data[i].cateName + "</a></span><p class='hits'><i class='Hui-iconfont' title='点击量'>&#xe6c1;</i> " + d.data[i].articleClicks + " °</p><p class='commonts'><i class='Hui-iconfont' title='评论'>&#xe622;</i><span id='sourceId::105' class='cy_cmt_count'>" + d.data[i].praiseClicks + "</span></p></div><div class='desc'>" + contt + "</div></li>";
+
+                        }else{
+
+                            var html = "<li class='index_arc_item'><a href='article?aid=" + d.data[i].articleId + "' class='pic'><img class='lazyload' src='__PUBLIC__" + d.data[i].articlePic + "' data-original='__PUBLIC__" + d.data[i].articlePic + "' alt='" + d.data[i].articleTitle + "'></a><h4 class='title'><a href='article?aid=" + d.data[i].articleId + "'>" + d.data[i].articleTitle + "</a></h4><div class='date_hits'><span>" + d.data[i].ator + "</span><span>" + d.data[i].addTime.substr(0,10) + "</span><span><a href='cate?cid=" + d.data[i].cateId + "'>" + d.data[i].cateName + "</a></span><p class='hits'><i class='Hui-iconfont' title='点击量'></i> " + d.data[i].articleClicks + " ° </p><p class='commonts'><i class='Hui-iconfont' title=''></i> <span class='cy_cmt_count'>" + d.data[i].praiseClicks + "</span></p></div><div class='desc'>" + contt + "</div></li>";
+                        }
+
+                        oUl.innerHTML += html;
+
+                    }
+
+                });
+                b = true; //执行状态
+            }
+
+            var load = document.getElementById('load');// 加载
+            load.onclick = function(){
+                var img = "<img src='__PUBLIC__index/img/loading/068.gif' class='loadImg' alt='加载中...' />";
+                load.innerHTML = img;
+                if(b){
+                    b = false;
+                    iPage++;
+                    window.setTimeout(function(){getLi()},1500);//这里 getLi() 要写成 function(){ getLi() }
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+{include file="Public/header"}
+
+<section class="container pt-20">
+    <!--<div class="Huialert Huialert-info"><i class="Hui-iconfont">&#xe6a6;</i>成功状态提示</div>-->
+    <!--left-->
+    <div class="col-sm-9 col-md-9">
+        <!--滚动图-->
+        <div class="slider_main">
+            <div class="slider">
+                <div class="bd">
+                    <ul>
+                        {volist name="slider" id="s"}
+                            <li>
+                                <a href="article?aid={$s.articleId}" target="_blank">
+                                    <img title="<?php echo mb_strlen($s['articleTitle'],'utf-8') > 8 ? mb_substr($s['articleTitle'],0,8,'utf-8').' . . . ' : $s['articleTitle'] ?>" src="__PUBLIC__{$s.articlePic}" class="sliderImg" />
+                                </a>
+                            </li>
+                        {/volist}
+                    </ul>
+                </div>
+                <ol class="hd cl dots">
+                    {volist name="slider" id="s"}
+                        <li>{$key + 1}</li>
+                    {/volist}
+                </ol>
+                <a class="slider-arrow prev" href="javascript:void(0)"></a>
+                <a class="slider-arrow next" href="javascript:void(0)"></a>
+            </div>
+        </div>
+
+        <div class="mt-20 bg-fff box-shadow radius mb-5">
+            <div class="tab-category">
+                <a href=""><strong class="current">最新发布</strong></a>
+            </div>
+        </div>
+        <div class="art_content">
+            <ul class="index_arc" id="ul-article">
+
+                <!--   此处 ：：：ajax加载文章   -->
+
+            </ul>
+            <div class="text-c mb-20" id="moreBlog">
+                <a class="btn  radius btn-block " id="load" href="javascript:;" onclick="moreBlog();">点击加载更多</a>
+            </div>
+        </div>
+    </div>
+    {include file="Public/right"}
+</section>
+{include file="Public/footer"}
+
+<script type="text/javascript" src="__PUBLIC__index/plugin/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__index/plugin/layer/3.0/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__index/plugin/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__index/plugin/pifu/pifu.js"></script>
+<script type="text/javascript" src="__PUBLIC__index/js/common.js"></script>
+<script>
+    $(function () {
+        $(window).on("scroll", backToTopFun);
+        backToTopFun();
+    });
+</script>
+<script type="text/javascript" src="__PUBLIC__index/plugin/jquery.SuperSlide/2.1.1/jquery.SuperSlide.min.js"></script>
+
+<script>
+    $(function () {
+//幻灯片
+        jQuery(".slider_main .slider").slide({
+            mainCell: ".bd ul",
+            titCell: ".hd li",
+            trigger: "mouseover",
+            effect: "leftLoop",
+            autoPlay: true,
+            delayTime: 800,
+            interTime: 2000,
+            pnLoop: true,
+            titOnClassName: "active"
+        })
+//tips
+        jQuery(".slideTxtBox").slide({
+            titCell: ".hd ul",
+            mainCell: ".bd ul",
+            autoPage: true,
+            effect: "top",
+            autoPlay: true
+        });
+//标签
+        $(".tags a").each(function () {
+            var x = 9;
+            var y = 0;
+            var rand = parseInt(Math.random() * (x - y + 1) + y);
+            $(this).addClass("tags" + rand)
+        });
+
+        $("img.lazyload").lazyload({failurelimit: 3});
+    });
+
+</script>
+
+</body>
+</html>

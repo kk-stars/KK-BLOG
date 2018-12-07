@@ -1,0 +1,151 @@
+<!--right-->
+<div class="col-sm-3 col-md-3">
+
+    <!--站点声明-->
+    <div class="panel panel-default mb-20">
+        <div class="panel-body">
+            <i class="Hui-iconfont" style="float: left;">&#xe62f;&nbsp;</i>
+            <div class="slideTxtBox">
+                <div class="bd">
+                    <ul>
+                        <li><a href="javascript:void(0);">满天星博客正式上线，欢迎访问 :)</a></li>
+                        <li><a href="javascript:void(0);">内容如有侵犯，请立即联系管理员删除</a></li>
+                        <li><a href="javascript:void(0);">本站内容仅供学习和参阅，不做任何商业用途</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--博主信息-->
+    <div class="bg-fff box-shadow radius mb-20">
+        <div class="tab-category">
+            <a href=""><strong>博主信息</strong></a>
+        </div>
+        <div class="tab-category-item">
+            <ul class="index_recd">
+                <li class="index_recd_item">
+                    <i class="Hui-iconfont">&#xe653;</i>姓名：{$about.alias}
+                </li>
+                <li class="index_recd_item">
+                    <i class="Hui-iconfont">&#xe70d;</i>职业：{$about.position}
+                </li>
+                <li class="index_recd_item">
+                    <i class="Hui-iconfont">&#xe63b;</i>邮箱：
+                    <a href="mailto:{$about.email}">
+                        {$about.email}
+                    </a>
+                </li>
+                <li class="index_recd_item">
+                    <i class="Hui-iconfont">&#xe671;</i>定位：{$about.address}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!--热门推荐-->
+    <div class="bg-fff box-shadow radius mb-20">
+        <div class="tab-category">
+            <a href=""><strong>热门推荐</strong></a>
+        </div>
+        <div class="tab-category-item">
+            <ul class="index_recd">
+                {volist name="comtArticles" id="ca"}
+                <li>
+                    <a href="article?aid={$ca.articleId}">{$ca.articleTitle}</a>
+                    <p class="hits"><i class="Hui-iconfont" title="点击量">&#xe622;</i> {$ca.articleComments} </p>
+                </li>
+                {/volist}
+                <!--五条数据-->
+            </ul>
+        </div>
+    </div>
+
+    <!--点击排行-->
+    <div class="bg-fff box-shadow radius mb-20">
+        <div class="tab-category">
+            <a href=""><strong>点击排行</strong></a>
+        </div>
+        <div class="tab-category-item">
+            <ul class="index_recd clickTop">
+                {volist name="heatArticles" id="ha"}
+                <li>
+                    <a href="article?aid={$ha.articleId}">{$ha.articleTitle}</a>
+                    <p class="hits"><i class="Hui-iconfont" title="点击量">&#xe6c1;</i> {$ha.articleClicks} ° </p>
+                </li>
+                {/volist}
+                <!--7条数据-->
+            </ul>
+        </div>
+    </div>
+
+    <!--标签-->
+    <div class="bg-fff box-shadow radius mb-20">
+        <div class="tab-category">
+            <a href=""><strong>栏目云</strong></a>
+        </div>
+        <div class="tab-category-item">
+            <div class="tags">
+                {volist name="rightCate" id="c"}
+                <a href="cate?cid={$c.cateId}">{$c.cateName}</a>
+                {/volist}
+            </div>
+        </div>
+    </div>
+
+    <!--图片-->
+    <div class="bg-fff box-shadow radius mb-20">
+        <div class="tab-category">
+            <a href=""><strong>扫我关注</strong></a>
+        </div>
+        <div class="tab-category-item">
+            <img data-original="__PUBLIC__{$about.wechat}" class="img-responsive lazyload" alt="响应式图片">
+        </div>
+    </div>
+
+    <!--友情链接-->
+<!--    <div class="bg-fff box-shadow radius mb-20">
+        <div class="tab-category">
+            <a href=""><strong>隔壁邻居</strong></a>
+        </div>
+        <div class="tab-category-item">
+            <span>
+                    <i class="Hui-iconfont">&#xe6f1;</i>
+                    <a href="" class="btn-link" title="">
+                    </a>
+                </span>
+        </div>
+    </div>-->
+
+    <!--分享-->
+    <div class="bg-fff box-shadow radius mb-20">
+        <div class="tab-category">
+            <a href=""><strong>站点分享</strong></a>
+        </div>
+        <div class="panel-body">
+
+            <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a>
+                <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            </div>
+            <script>window._bd_share_config = {
+                "common": {
+                    "bdSnsKey": {},
+                    "bdText": "",
+                    "bdMini": "2",
+                    "bdMiniList": false,
+                    "bdPic": "",
+                    "bdStyle": "2",
+                    "bdSize": "24"
+                }, "share": {}
+            };
+            with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+        </div>
+    </div>
+
+
+</div>

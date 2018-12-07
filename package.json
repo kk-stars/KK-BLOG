@@ -1,0 +1,25 @@
+{
+  "name": "kk-blog",
+  "version": "1.0.0",
+  "description": "ThinkPHP 5.0 ===============",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kk-stars/kk-blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kk-stars/kk-blog/issues"
+  },
+  "homepage": "https://github.com/kk-stars/kk-blog#readme",
+  "devDependencies": {
+    "webpack": "^4.12.0"
+  }
+}

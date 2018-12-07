@@ -1,0 +1,146 @@
+---------------------------------------------------------------
+[ 2018-06-09T08:09:54+08:00 ] ::1 ::1 GET /kk-blog/index.php/admin/login/login.html
+[ info ] localhost/kk-blog/index.php/admin/login/login.html [运行时间：1.279591s][吞吐率：0.78req/s] [内存消耗：593.34kb] [文件加载：54]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'bdshare_firstime=1524986368638; Hm_lvt_ee7bf77607becfc0f2583781081bd70c=1528365827,1528365989; Hm_lvt_960aeeddbc3d3be0f34f6787202708f9=1528365846,1528365991',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Login->login[ G:\PHPWAMP_IN2\wwwroot\kk-blog\application\admin\controller\Login.php ]
+[ info ] [ VIEW ] G:\PHPWAMP_IN2\wwwroot\kk-blog/application/admin\view\login\login.html [ array (
+  0 => 'conf',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.151634s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.110437s ]
+[ sql ] [ SQL ] SELECT * FROM `config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000685s ]
+---------------------------------------------------------------
+[ 2018-06-09T08:09:54+08:00 ] ::1 ::1 GET /kk-blog/article?aid=45
+[ info ] localhost/kk-blog/article?aid=45 [运行时间：2.389998s][吞吐率：0.42req/s] [内存消耗：657.39kb] [文件加载：58]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 'index/Article/article_detail/index',
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'bdshare_firstime=1524986368638; Hm_lvt_ee7bf77607becfc0f2583781081bd70c=1528365827,1528365989; Hm_lvt_960aeeddbc3d3be0f34f6787202708f9=1528365846,1528365991',
+)
+[ info ] [ PARAM ] array (
+  'aid' => '45',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT redis
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.335015s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.298266s ]
+[ sql ] [ SQL ] SELECT * FROM `config` LIMIT 1 [ RunTime:0.001185s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `cate` [ RunTime:0.002546s ]
+[ sql ] [ SQL ] SELECT * FROM `cate` WHERE  `status` = 1 [ RunTime:0.000957s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `aboutme` [ RunTime:0.002460s ]
+[ sql ] [ SQL ] SELECT * FROM `aboutme` WHERE  `meId` = 1 LIMIT 1 [ RunTime:0.001664s ]
+[ error ] [0]Redis server went away[G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\library\think\cache\driver\Redis.php:82]
+---------------------------------------------------------------
+[ 2018-06-09T22:15:57+08:00 ] ::1 ::1 GET /kk-blog/index.php/admin/login/login.html
+[ info ] localhost/kk-blog/index.php/admin/login/login.html [运行时间：2.530534s][吞吐率：0.40req/s] [内存消耗：593.35kb] [文件加载：54]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'bdshare_firstime=1524986368638; Hm_lvt_ee7bf77607becfc0f2583781081bd70c=1528365827,1528365989; Hm_lvt_960aeeddbc3d3be0f34f6787202708f9=1528365846,1528365991',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Login->login[ G:\PHPWAMP_IN2\wwwroot\kk-blog\application\admin\controller\Login.php ]
+[ info ] [ VIEW ] G:\PHPWAMP_IN2\wwwroot\kk-blog/application/admin\view\login\login.html [ array (
+  0 => 'conf',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.185405s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.003037s ]
+[ sql ] [ SQL ] SELECT * FROM `config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000967s ]
+---------------------------------------------------------------
+[ 2018-06-09T22:15:58+08:00 ] ::1 ::1 GET /kk-blog/article?aid=45
+[ info ] localhost/kk-blog/article?aid=45 [运行时间：3.683213s][吞吐率：0.27req/s] [内存消耗：657.39kb] [文件加载：58]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 'index/Article/article_detail/index',
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'bdshare_firstime=1524986368638; Hm_lvt_ee7bf77607becfc0f2583781081bd70c=1528365827,1528365989; Hm_lvt_960aeeddbc3d3be0f34f6787202708f9=1528365846,1528365991',
+)
+[ info ] [ PARAM ] array (
+  'aid' => '45',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT redis
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.185414s ] mysql:host=localhost;dbname=kk-blog;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `config` [ RunTime:0.002836s ]
+[ sql ] [ SQL ] SELECT * FROM `config` LIMIT 1 [ RunTime:0.001096s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `cate` [ RunTime:0.002242s ]
+[ sql ] [ SQL ] SELECT * FROM `cate` WHERE  `status` = 1 [ RunTime:0.000753s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `aboutme` [ RunTime:0.000930s ]
+[ sql ] [ SQL ] SELECT * FROM `aboutme` WHERE  `meId` = 1 LIMIT 1 [ RunTime:0.000865s ]
+[ error ] [0]Redis server went away[G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\library\think\cache\driver\Redis.php:82]

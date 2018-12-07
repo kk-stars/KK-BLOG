@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__index/comment/css/comment.css">
+    <link rel="stylesheet" href="__PUBLIC__index/comment/css/style.css">
+    <script type="text/javascript" src="__PUBLIC__index/comment/js/jquery-1.12.0.min.js"></script>
+    <!--  <script type="text/javascript" src="__PUBLIC__index/comment/js/jquery.flexText.js"></script>-->
+</head>
+<body>
+<!--
+    此评论textarea文本框部分使用的https://github.com/alexdunphy/flexText此插件
+-->
+<div class="commentAll">
+    <!--评论区域 begin-->
+    <div class="reviewArea clearfix">
+        <textarea id="commentTextarea" class="comment-content comment-input" placeholder="请输入评论&hellip;"
+                  onkeyup="keyUP(this)"></textarea>
+        <a href="javascript:;" class="plBtn" onclick="submitComment({$a.articleId})">评论</a>
+    </div>
+    <!--评论区域 end-->
+    <!--回复区域 begin-->
+    <div class="comment-show" id="commentS">
+        {volist name="comment" id="c"}
+        <div class="comment-show-con clearfix">
+            <div class="pull-left">    <!-- class : comment-show-con-img  -->
+                <img src="__PUBLIC__index/img/head.png" alt="">
+            </div>
+            <div class="comment-show-con-list pull-left clearfix">
+                <div class="pl-text clearfix">
+                    <p class="comment-size-name">{$c.randAtorName} : </p>
+                    <span class="my-pl-con">&nbsp;{$c.commentContent}</span>
+                </div>
+                <div class="date-dz">
+                    <span class="date-dz-left pull-left comment-time">{$c.addTime}</span>
+                    <div class="date-dz-right pull-right comment-pl-block">
+                        <!--<a href="javascript:;" class="removeBlock">删除</a>-->
+                        <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a>
+                        <data id="cname" value="{$c.randAtorName}" type="hidden"></data>
+                        <data id="cid" value="{$c.commentId}" type="hidden"></data>
+                        <data id="rname" value="{$conf.alias}" type="hidden"></data>
+                        <span class="pull-left date-dz-line">|</span>
+
+                        {if condition="$c['praiseState'] eq 1"}
+                            <a href="javascript:;" id="commentP_{$c.commentId}" onclick="praise({$c.commentId},'c')" class="date-dz-z pull-left date-dz-z-click">
+                                <i id="comRedPraise_{$c.commentId}" class="date-dz-z-click-red red"></i>赞 (<i id="comPnum_{$c.commentId}" class="z-num">{$c.praise}</i>)
+                            </a>
+                        {else /}
+                            <a href="javascript:;" id="commentP_{$c.commentId}" onclick="praise({$c.commentId},'c')" class="date-dz-z pull-left">
+                                <i id="comRedPraise_{$c.commentId}" class="date-dz-z-click-red"></i>赞 (<i id="comPnum_{$c.commentId}" class="z-num">{$c.praise}</i>)
+                            </a>
+                        {/if}
+
+                    </div>
+                </div>
+                <div class="hf-list-con" style="display: block;">
+                    {if condition="$c['reply'] neq null"}
+                    {volist name="$c['reply']" id="cr"}
+                    <div class="all-pl-con">
+                        <div class="pl-text hfpl-text clearfix">
+                            <a href="about" class="comment-size-name">{$conf.alias} : </a>
+                            <span class="my-pl-con">回复@<span class="comment-size-name">{$cr.cname} </span> :  {$cr.replyContent}
+                                </span>
+                        </div>
+                        <div class="date-dz">
+                            <span class="date-dz-left pull-left comment-time">{$cr.addTime}</span>
+                            <div class="date-dz-right pull-right comment-pl-block">
+                                <!--<a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a>-->
+                                <!--<span class="pull-left date-dz-line">|</span>-->
+
+                                {if condition="$cr['praiseState'] eq 1"}
+
+                                    <a href="javascript:;" id="replyP_{$cr.replyId}" onclick="praise({$cr.replyId},'r')" class="date-dz-z pull-left date-dz-z-click">
+                                        <i id="repRedPraise_{$cr.replyId}" class="date-dz-z-click-red red"></i>赞 (<i id="rePnum_{$cr.replyId}" class="z-num">{$cr.praise}</i>)
+                                    </a>
+
+                                {else /}
+
+                                    <a href="javascript:;" id="replyP_{$cr.replyId}" onclick="praise({$cr.replyId},'r')" class="date-dz-z pull-left">
+                                        <i id="repRedPraise_{$cr.replyId}" class="date-dz-z-click-red"></i>赞 (<i id="rePnum_{$cr.replyId}" class="z-num">{$cr.praise}</i>)
+                                    </a>
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                    {/if}
+                </div>
+            </div>
+        </div>
+        {/volist}
+    </div>
+    <!--回复区域 end-->
+</div>
+
+
+<!--textarea高度自适应-->
+<script type="text/javascript">
+    $(function () {
+        $('.comment-content').flexText();
+    });
+</script>
+<!--textarea限制字数-->
+<script type="text/javascript">
+    function keyUP(t) {
+        var len = $(t).val().length;
+        if (len > 299) {
+            $(t).val($(t).val().substring(0, 300));
+        }
+    }
+</script>
+<!--评论-->
+<script>
+    function submitComment(aid) {
+
+        var cCT = document.getElementById('commentTextarea').value;
+        $.post('__URL__/comment', {'content': cCT, 'aid': aid}, function (data) {
+            var d = JSON.parse(data);
+            if (d.code == 1) {
+                var cHtml = '<div class="comment-show-con clearfix"><div class="pull-left"><img src="__PUBLIC__index/img/head.png" alt=""></div> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">' + d.data.randAtorName + ' : </a> <span class="my-pl-con">&nbsp;' + d.data.commentContent + '</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">' + d.data.addTime + '</span> <div class="date-dz-right pull-right comment-pl-block"> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num"> ' + d.data.praise + ' </i>)</a> </div> </div><div class="hf-list-con"></div></div> </div>';
+                if (cCT.replace(/(^\s*)|(\s*$)/g, "") != '') {
+                    // 空格开头或者空格结尾 ^是开始 \s是空白 *表示0个或多个 |是或者 $是结尾 g表示全局
+                    $('#commentS').prepend(cHtml);
+                    // 插入提交的评论内容
+                    $('#commentTextarea').prop('value', '').siblings('pre').find('span').text('');
+                    // 清空提交后的 textarea  和  pre 里的内容
+                } else {
+                    alert('评论内容不能以空格开头或空格结尾');
+                    return false;
+                }
+
+            } else {
+                alert(d.message);
+                return false;
+            }
+        });
+
+    }
+</script>
+<!--点击回复动态创建回复块-->
+<script type="text/javascript">
+    $('.comment-show').on('click', '.pl-hf', function () {
+        //获取回复人的名字
+        var fhName = $(this).parents('.date-dz-right').parents('.date-dz').siblings('.pl-text').find('.comment-size-name').html();
+        //回复@
+        var fhN = '回复@' + fhName;
+        //var oInput = $(this).parents('.date-dz-right').parents('.date-dz').siblings('.hf-con');
+        var fhHtml = '<div id="replydiv" class="hf-con pull-left"> <textarea id="replyTextarea" class="replyContent comment-input hf-input" placeholder=" ' + fhN + ' " onkeyup="keyUP(this)"></textarea> <a href="javascript:;" onclick="replyComment()" class="hf-pl">评论</a></div>';
+        //显示回复
+        if ($(this).is('.hf-con-block')) {
+            $(this).parents('.date-dz-right').parents('.date-dz').append(fhHtml);
+            $(this).removeClass('hf-con-block');
+            $('.replyContent').flexText();
+            $(this).parents('.date-dz-right').siblings('.hf-con').find('.pre').css('padding', '6px 15px');
+            //console.log($(this).parents('.date-dz-right').siblings('.hf-con').find('.pre'))
+            //input框自动聚焦
+            //$(this).parents('.date-dz-right').siblings('.hf-con').find('.hf-input').val('').focus().val(fhN);
+        } else {
+            $(this).addClass('hf-con-block');
+            $(this).parents('.date-dz-right').siblings('.hf-con').remove();
+        }
+    });
+</script>
+<!--回复评论-->
+<script>
+
+    function replyComment(rname) {
+
+        var ator = document.getElementById('rname').value;
+        var cname = document.getElementById('cname').value;
+        var cid = document.getElementById('cid').value;
+        var cRT = document.getElementById('replyTextarea').value;
+        $.post('__URL__/reply', {
+            'replyContent': cRT,//回复内容
+            'cname': cname,     //评论人姓名
+            'replyCid': cid,    //评论id
+            'ator': ator         //回复人姓名
+        }, function (data) {
+            var d = JSON.parse(data);
+            if (d.code == 1) {
+                var rHtml = '<div class="all-pl-con"><div class="pl-text hfpl-text clearfix"><a href="about" class="comment-size-name">' + d.data.ator + ' : </a><span class="my-pl-con">回复@<span class="comment-size-name">' + d.data.cname + ' </span>:  ' + d.data.replyContent + '</span></div><div class="date-dz"><span class="date-dz-left pull-left comment-time">' + d.data.addTime + '</span><div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">' + d.data.praise + '</i>)</a></div></div></div>';
+                $('#replydiv').parents('.comment-show-con-list').find('.hf-list-con').css('display', 'block').prepend(rHtml) && $('#replydiv').siblings('.date-dz-right').find('.pl-hf').addClass('hf-con-block') && $('#replydiv').remove();
+
+            } else {
+                alert(d.message);
+                return false;
+            }
+        });
+
+    }
+</script>
+<!--点赞-->
+<script type="text/javascript">
+    function praise(id, t) {
+        $.post('__URL__/praise', {'id': id, 'type': t}, function (data) {
+            var d = JSON.parse(data);
+            if (t == 'r') {
+
+                if (d.code == 0) {
+
+                    $('#replyP_' + id).removeClass('date-dz-z-click red');
+                    $('#rePnum_' + id).html(d.pnum);
+                    $('#repRedPraise_' + id).removeClass('red');
+
+                } else if (d.code == 1) {
+
+                    $('#replyP_' + id).addClass('date-dz-z-click');
+                    $('#rePnum_' + id).html(d.pnum);
+                    $('#repRedPraise_' + id).addClass('red');
+
+                }
+
+            } else if (t == 'c') {
+
+                if (d.code == 0) {
+
+                    $('#commentP_' + id).removeClass('date-dz-z-click red');
+                    $('#comPnum_' + id).html(d.pnum);
+                    $('#comRedPraise_' + id).removeClass('red');
+
+                } else if (d.code == 1) {
+
+                    $('#commentP_' + id).addClass('date-dz-z-click');
+                    $('#comPnum_' + id).html(d.pnum);
+                    $('#comRedPraise_' + id).addClass('red');
+
+                }
+
+            }
+        });
+    }
+</script>
+</body>
+</html>
