@@ -36,7 +36,7 @@ class Comment extends Comm{
             $op_details = db('comment') -> where('commentId',$commentId) -> field('articleId') -> find();
             //操作记录
             $op = new Operation();
-            $op_admin = session('adminName');
+            $op_admin = session('kkstars_adminName');
             $op -> op('delete','评论',$op_admin,'评论ID：'.$commentId.'，文章ID：'.$op_details['articleId']);
         }else{
             $info = array('code' => '0','message' => '数据删除错误!');

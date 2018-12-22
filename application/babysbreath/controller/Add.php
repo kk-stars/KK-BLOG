@@ -37,7 +37,7 @@ class Add extends Comm{
 
                 //操作记录
                 $op = new Operation();
-                $op_admin = session('adminName');
+                $op_admin = session('kkstars_adminName');
                 $op -> op('add','文章',$op_admin,$data['articleTitle']);
 
                 $this->success('文章添加成功!正在跳转……',url('Article/article'));
@@ -62,7 +62,7 @@ class Add extends Comm{
 
                 //操作记录
                 $op = new Operation();
-                $op_admin = session('adminName');
+                $op_admin = session('kkstars_adminName');
                 $op -> op('add','栏目',$op_admin,$cateData['cateName']);
 
 
@@ -103,7 +103,7 @@ class Add extends Comm{
 
                 //操作记录
                 $op = new Operation();
-                $op_admin = session('adminName');
+                $op_admin = session('kkstars_adminName');
                 $op -> op('add','友情链接',$op_admin,$linkData['friendshipLinkName']);
 
                 $this->success('链接添加成功!正在跳转……',url('Flink/flink'));
@@ -135,7 +135,7 @@ class Add extends Comm{
 
                 //操作记录
                 $op = new Operation();
-                $op_admin = session('adminName');
+                $op_admin = session('kkstars_adminName');
                 $op -> op('add','心情随笔',$op_admin,$moodData['moodTitle']);
 
                 $this->success('新心情添加成功!正在跳转……',url('mood/mood'));

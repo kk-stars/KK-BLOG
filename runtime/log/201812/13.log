@@ -1,0 +1,31 @@
+---------------------------------------------------------------
+[ 2018-12-13T14:00:09+08:00 ] 127.0.0.1 127.0.0.1 GET /kk-blog/index/index/flow?page=1
+[ info ] localhost/kk-blog/index/index/flow?page=1 [运行时间：40.179606s][吞吐率：0.02req/s] [内存消耗：2,238.48kb] [文件加载：57]
+[ info ] [ LANG ] G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'index',
+    2 => 'flow',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'ip_127001=127.0.0.1; PHPSESSID=8co1tmb0iqqj727dhp72srat55',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/kk-blog/',
+  'accept' => '*/*',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [0]Redis server went away[G:\PHPWAMP_IN2\wwwroot\kk-blog\thinkphp\library\think\cache\driver\Redis.php:70]

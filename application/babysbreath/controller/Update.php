@@ -44,7 +44,7 @@ class Update extends Comm{
 
                     //操作记录
                     $op = new Operation();
-                    $op_admin = session('adminName');
+                    $op_admin = session('kkstars_adminName');
                     $op -> op('update','文章',$op_admin,$upData['articleTitle']);
 
                     $this->success('修改文章成功!正在跳转……',url('Article/article'));
@@ -76,7 +76,7 @@ class Update extends Comm{
 
                 //操作记录
                 $op = new Operation();
-                $op_admin = session('adminName');
+                $op_admin = session('kkstars_adminName');
                 $op -> op('update','栏目',$op_admin,$update['cateName']);
 
                 //当更改栏目成功后 需要更新旧缓存
@@ -99,6 +99,28 @@ class Update extends Comm{
 
     public function updateFlink()
     {
+        $id = input('id');
+        if($id){
+            $UpdateData = db('friendshiplink') -> where('friendshipLinkId',$id) -> find();
+            $this -> assign('UpdateData',$UpdateData);
+        }
+        if(request() -> isPost()){
+            $data = input('post.');
+            if($data){
+                $result = db('friendshiplink') -> where('friendshipLinkId',$data['friendshipLinkId']) -> update($data);
+                if($result){
+
+                    //操作记录
+                    $op = new Operation();
+                    $op_admin = session('kkstars_adminName');
+                    $op -> op('update','友情链接',$op_admin,$data['friendshipLinkName']);
+
+                    $this -> success('修改成功!');
+                }else{
+                    $this -> error('修改失败!');
+                }
+            }
+        }
         return view();
     }
 

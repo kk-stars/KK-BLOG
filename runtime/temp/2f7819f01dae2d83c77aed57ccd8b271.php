@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:70:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/index\view\index\index.html";i:1529893718;s:72:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/index\view\Public\header.html";i:1527503171;s:71:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/index\view\Public\right.html";i:1531727110;s:72:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/index\view\Public\footer.html";i:1524903142;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:70:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/index\view\index\index.html";i:1529893718;s:72:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/index\view\Public\header.html";i:1527503171;s:71:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/index\view\Public\right.html";i:1545384445;s:72:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/index\view\Public\footer.html";i:1524903142;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -314,6 +314,7 @@
     </div>
 
     <!--图片-->
+    <?php if($about['wechat'] != ''): ?>
     <div class="bg-fff box-shadow radius mb-20">
         <div class="tab-category">
             <a href=""><strong>扫我关注</strong></a>
@@ -322,6 +323,7 @@
             <img data-original="__PUBLIC__<?php echo $about['wechat']; ?>" class="img-responsive lazyload" alt="响应式图片">
         </div>
     </div>
+    <?php endif; ?>
 
     <!--友情链接-->
 <!--    <div class="bg-fff box-shadow radius mb-20">

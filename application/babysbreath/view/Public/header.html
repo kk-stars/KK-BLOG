@@ -8,10 +8,10 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    {$Request.session.adminName}
+                    {$Request.session.kkstars_adminName}
                 </a>
             </li>
-            <li><a href="{:url('Login/login')}" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            <li><a href="{:url('Login/loginExit')}" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
           </ul>
         </div>
       </div>

@@ -35,7 +35,7 @@ class Mood extends Comm{
 
             //操作记录
             $op = new Operation();
-            $op_admin = session('adminName');
+            $op_admin = session('kkstars_adminName');
             $op -> op('delete','心情随笔',$op_admin,'心情ID：'.$moodId);
         }else{
             $info = array('code' => 0,'message' => '心情随笔删除失败');

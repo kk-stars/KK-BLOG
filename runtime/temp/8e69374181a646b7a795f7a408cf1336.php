@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\setting\setting.html";i:1525228546;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\header.html";i:1524713445;s:77:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\aside.html";i:1524713961;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\prompt.html";i:1517304229;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\setting\setting.html";i:1545375034;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\header.html";i:1544511710;s:77:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\aside.html";i:1544926203;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\prompt.html";i:1517304229;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__admin/css/beyond.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__admin/css/font-awesome.min.css">
 <link rel="apple-touch-icon-precomposed" href="__PUBLIC__admin/images/icon/icon.png">
-<link rel="shortcut icon" href="__PUBLIC__admin/images/icon/favicon.ico">
+<link rel="shortcut icon" href="__PUBLIC__admin/images/icon/favicon.png">
 <script src="__PUBLIC__admin/js/jquery-2.1.4.min.js"></script>
 <!--[if gte IE 9]>
   <script src="__PUBLIC__admin/js/jquery-1.11.1.min.js" type="text/javascript"></script>
@@ -43,10 +43,10 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <?php echo \think\Request::instance()->session('adminName'); ?>
+                    <?php echo \think\Request::instance()->session('kkstars_adminName'); ?>
                 </a>
             </li>
-            <li><a href="<?php echo url('Login/login'); ?>" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            <li><a href="<?php echo url('Login/loginExit'); ?>" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
           </ul>
         </div>
       </div>
@@ -76,7 +76,8 @@
         <li><a class="dropdown-toggle" id="otherMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他</a>
           <ul class="dropdown-menu" aria-labelledby="otherMenu">
             <li><a href="<?php echo url('Flink/flink'); ?>">友情链接</a></li>
-            <li class="disabled"><a data-toggle="modal" data-target="#areDeveloping">访问记录</a></li>
+            <li><a href="<?php echo url('Log/log'); ?>">操作记录</a></li>
+            <!--<li class="disabled"><a data-toggle="modal" data-target="#areDeveloping">访问记录</a></li>-->
           </ul>
         </li>
       </ul>
@@ -84,6 +85,7 @@
         <li><a class="dropdown-toggle" id="settingMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">设置</a>
           <ul class="dropdown-menu" aria-labelledby="settingMenu">
             <li><a href="<?php echo url('Setting/setting'); ?>">基本设置</a></li>
+            <li><a href="<?php echo url('About/about'); ?>">关于我</a></li>
           </ul>
         </li>
       </ul>
@@ -198,12 +200,12 @@
               <div class="add-article-box-content" id="imgDiv">
               	<input type="file" id="add-img" name="logo" />
               	<?php if($conf['logo'] != null): ?>
-              		<img src="__PUBLIC__<?php echo $conf['logo']; ?>" title="logo" width="340px" />
+              		<img src="__PUBLIC__<?php echo $conf['logo']; ?>" title="logo" width="250px" />
               	<?php endif; ?>
               </div>
             </div>
 
-            <div class="add-article-box">
+            <!--<div class="add-article-box">
               <h2 class="add-article-box-title"><span>自动清除缓存</span></h2>
               <div class="add-article-box-content">
               	<select name="cache" >
@@ -215,7 +217,7 @@
               		<option value="5">5</option>
               	</select>
               </div>
-            </div>
+            </div>-->
 
             <div class="add-article-box">
               <h2 class="add-article-box-title"><span>电子邮件地址</span></h2>
@@ -234,7 +236,7 @@
             <div class="add-article-box">
               <h2 class="add-article-box-title"><span>登录超时</span></h2>
               <div class="add-article-box-content">
-                <input type="text" name="logOverTime" class="form-control" value="<?php echo $conf['logOverTime']; ?>" placeholder="在此处输入超时时间(s)" value="3600" required autocomplete="off" />
+                <input type="text" name="loginTimeout" class="form-control" value="<?php echo $conf['loginTimeout']; ?>" placeholder="在此处输入超时时间(s)" required autocomplete="off" />
                 <span class="prompt-text">单位(秒),超时将强制退出</span> </div>
             </div>
             <button class="btn btn-primary" type="submit" style="float:right;">更新</button>

@@ -4,7 +4,9 @@ use app\babysbreath\model\Operation;
 
 class Article extends Comm{
     protected function _initialize(){
-        if (!session('adminId')){
+        $this -> CheckLoginTime();
+
+        if (!session('kkstars_adminId') && !session('LoginTime') && !session('kkstars_adminName')){
             $this->error('尚未登录系统!请先登录……',url('Login/Login'));
         }
 
@@ -34,7 +36,7 @@ class Article extends Comm{
 
             //操作记录
             $op = new Operation();
-            $op_admin = session('adminName');
+            $op_admin = session('kkstars_adminName');
             $op -> op('delete(update status -> 0)','文章',$op_admin,$op_details['articleTitle']);
         }else {
             $info = array('code' => 0,'message' => '删除文章成功!');
@@ -55,7 +57,7 @@ class Article extends Comm{
 
                 //操作记录
                 $op = new Operation();
-                $op_admin = session('adminName');
+                $op_admin = session('kkstars_adminName');
                 $op -> op('reduction','文章',$op_admin,$articleAll['articleTitle']);
             }else {
                 $info = array('code' => 0,'message' => '还原文章失败!');
@@ -87,12 +89,38 @@ class Article extends Comm{
 
                 //操作记录
                 $op = new Operation();
-                $op_admin = session('adminName');
+                $op_admin = session('kkstars_adminName');
                 $op -> op('delete','文章',$op_admin,$op_details['articleTitle']);
             }else{
                 $info = array('code' => 0,'message' => '文章彻底删除失败!');
             }
         }
         echo json_encode($info);die;
+    }
+
+    public function CheckLoginTime()
+    {
+        if(session('LoginTime') && session('kkstars_adminName') && session('kkstars_adminId')){
+            //检查登录是否超时
+            $NowTime = time();
+            $LoginTime = session('LoginTime');
+            // $timeout 超时时间（s）
+            $timeout = db('config') -> where('id','1')  -> field('loginTimeout') -> find();
+            if(($NowTime - $LoginTime) > $timeout['loginTimeout'] ){
+
+                //操作记录
+                $op = new Operation();
+                $op_admin = session('kkstars_adminName');
+                $op -> op('login timeout','登录超时',$op_admin,'登录已超时，请重新登录');
+
+                session('[destroy]');
+                session(null);
+                $this -> error('登录已超时，请重新登录',url('Login/login'));
+            }else{
+                session('LoginTime',$NowTime);
+            }
+        }else{
+            $this->error('尚未登录系统!请先登录……',url('Login/Login'));
+        }
     }
 }

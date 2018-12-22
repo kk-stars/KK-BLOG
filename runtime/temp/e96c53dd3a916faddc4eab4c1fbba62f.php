@@ -1,30 +1,30 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:76:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\flink\flink.html";i:1524712452;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\header.html";i:1524713445;s:77:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\aside.html";i:1524713961;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\prompt.html";i:1517304229;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:76:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\flink\flink.html";i:1544455254;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\header.html";i:1524713445;s:77:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\aside.html";i:1524713961;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\prompt.html";i:1517304229;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="description" content="Dashboard">
-<meta name="renderer" content="webkit">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>友情链接 - Babysbreath博客管理系统</title>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__admin/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__admin/css/style.css">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__admin/css/font-awesome.min.css">
-<link rel="apple-touch-icon-precomposed" href="__PUBLIC__admin/images/icon/icon.png">
-<link rel="shortcut icon" href="__PUBLIC__admin/images/icon/favicon.ico">
-<script src="__PUBLIC__admin/js/jquery-2.1.4.min.js"></script>
-<!--[if gte IE 9]>
-  <script src="__PUBLIC__admin/js/jquery-1.11.1.min.js" type="text/javascript"></script>
-  <script src="__PUBLIC__admin/js/html5shiv.min.js" type="text/javascript"></script>
-  <script src="__PUBLIC__admin/js/respond.min.js" type="text/javascript"></script>
-  <script src="__PUBLIC__admin/js/selectivizr-min.js" type="text/javascript"></script>
-<![endif]-->
+    <meta charset="utf-8">
+    <meta name="description" content="Dashboard">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>友情链接 - Babysbreath博客管理系统</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__admin/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__admin/css/style.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__admin/css/font-awesome.min.css">
+    <link rel="apple-touch-icon-precomposed" href="__PUBLIC__admin/images/icon/icon.png">
+    <link rel="shortcut icon" href="__PUBLIC__admin/images/icon/favicon.ico">
+    <script src="__PUBLIC__admin/js/jquery-2.1.4.min.js"></script>
+    <!--[if gte IE 9]>
+    <script src="__PUBLIC__admin/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="__PUBLIC__admin/js/html5shiv.min.js" type="text/javascript"></script>
+    <script src="__PUBLIC__admin/js/respond.min.js" type="text/javascript"></script>
+    <script src="__PUBLIC__admin/js/selectivizr-min.js" type="text/javascript"></script>
+    <![endif]-->
 </head>
 
 <body class="user-select">
 <section class="container-fluid">
-    <header>
+      <header>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -44,8 +44,8 @@
     </nav>
   </header>
 
-  <div class="row">
-  
+    <div class="row">
+        
     <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
       <ul class="nav nav-sidebar">
         <li><a href="<?php echo url('Index/index'); ?>">报告</a></li>
@@ -79,55 +79,85 @@
         </li>
       </ul>
     </aside>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
-      <form action="/Flink/checkAll" method="post" >
-        <h1 class="page-header">操作</h1>
-        <ol class="breadcrumb">
-          <li><a href="<?php echo url('Add/addFlink'); ?>">增加友情链接</a></li>
-        </ol>
-        <h1 class="page-header">管理 <span class="badge"><?php echo \think\Request::instance()->session('flinkCount'); ?></span></h1>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th width="100px"><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">选择</span></th>
-                <th><span class="glyphicon glyphicon-bookmark"></span> <span class="visible-lg">名称</span></th>
-                <th width="500px"><span class="glyphicon glyphicon-link"></span> <span class="visible-lg">URL</span></th>
-                <th><span class="glyphicon glyphicon-bookmark"></span> <span class="visible-lg">图片</span></th>
-                <th width="200px"><span class="glyphicon glyphicon-link"></span> <span class="visible-lg">添加日期</span></th>
-                <th width="200px"><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
-              </tr>
-            </thead>
-            <tbody>
-            <?php if(is_array($fl) || $fl instanceof \think\Collection || $fl instanceof \think\Paginator): $i = 0; $__LIST__ = $fl;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$l): $mod = ($i % 2 );++$i;?>
-              <tr>
-                <td><input type="checkbox" class="input-control" name="checkbox[]" value="<?php echo $l['friendshipLinkId']; ?>" /><?php echo $l['friendshipLinkId']; ?></td>
-                <td class="article-title"><?php echo $l['friendshipLinkName']; ?></td>
-                <td><a target="<?php echo $l['target']; ?>" href="<?php echo $l['friendshipLinkURL']; ?>"><?php echo $l['friendshipLinkURL']; ?></a></td>
-               	<td class="article-title">
-                	<?php if($l['pic'] != null): ?>
-                		<img src="__PUBLIC__<?php echo $l['pic']; ?>">
-                	<?php else: ?>
-                		未上传图片
-                	<?php endif; ?>
-                </td>
-                <td><?php echo $l['addTime']; ?></td>
-                <td>
-                	<a href="<?php echo url(''); ?>"> <i class="fa fa-edit"></i> 修改　</a>
-                	<a rel="6"> <i class="fa fa-trash-o"></i> 删除　</a>
-               	</td>
-              </tr>
-             <?php endforeach; endif; else: echo "" ;endif; ?>
-             <tr><td colspan="5"><div class="pagelist"><?php echo $fl->render(); ?></div></td></tr>
-            </tbody>
-          </table>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+            <form action="/Flink/checkAll" method="post">
+                <h1 class="page-header">操作</h1>
+                <ol class="breadcrumb">
+                    <li><a href="<?php echo url('Add/addFlink'); ?>">增加友情链接</a></li>
+                </ol>
+                <h1 class="page-header">管理 <span class="badge"><?php echo \think\Request::instance()->session('flinkCount'); ?></span></h1>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th width="100px"><span class="glyphicon glyphicon-th-large"></span> <span
+                                    class="visible-lg">选择</span></th>
+                            <th><span class="glyphicon glyphicon-bookmark"></span> <span class="visible-lg">名称</span>
+                            </th>
+                            <th width="500px"><span class="glyphicon glyphicon-link"></span> <span class="visible-lg">URL</span>
+                            </th>
+                            <th><span class="glyphicon glyphicon-bookmark"></span> <span class="visible-lg">图片</span>
+                            </th>
+                            <th width="200px"><span class="glyphicon glyphicon-link"></span> <span class="visible-lg">添加日期</span>
+                            </th>
+                            <th width="200px"><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php if(is_array($fl) || $fl instanceof \think\Collection || $fl instanceof \think\Paginator): $i = 0; $__LIST__ = $fl;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$l): $mod = ($i % 2 );++$i;?>
+                        <tr id="flink_tr_<?php echo $l['friendshipLinkId']; ?>">
+                            <td><input type="checkbox" class="input-control" name="checkbox[]" value="<?php echo $l['friendshipLinkId']; ?>"/><?php echo $l['friendshipLinkId']; ?>
+                            </td>
+                            <td class="article-title"><?php echo $l['friendshipLinkName']; ?></td>
+                            <td><a target="<?php echo $l['target']; ?>" href="<?php echo $l['friendshipLinkURL']; ?>"><?php echo $l['friendshipLinkURL']; ?></a></td>
+                            <td class="article-title">
+                                <?php if($l['pic'] != null): ?>
+                                <img src="<?php echo $l['pic']; ?>" width="200px">
+                                <?php else: ?>
+                                未上传图片
+                                <?php endif; ?>
+                            </td>
+                            <td><?php echo $l['addTime']; ?></td>
+                            <td>
+                                <a href="<?php echo url('Update/updateFlink',array('id' => $l['friendshipLinkId'])); ?>"> <i class="fa fa-edit"></i> 修改　</a>
+                                <a rel="6" onclick="delLink(<?php echo $l['friendshipLinkId']; ?>)"> <i class="fa fa-trash-o"></i> 删除　</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                        <tr>
+                            <td colspan="6">
+                                <div class="pagelist"><?php echo $fl->render(); ?></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
         </div>
-      </form>
     </div>
-  </div>
 </section>
 <!--提示模态框-->
-  
+<div class="modal fade" id="delarticle" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" id="closeX" data-dismiss="modal" aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="articleModalLabel">
+
+                </h4>
+            </div>
+            <div class="modal-body" id='delArticleBody'>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="close" data-dismiss="modal" >关闭 </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="modal fade user-select" id="areDeveloping" tabindex="-1" role="dialog" aria-labelledby="areDevelopingModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -147,28 +177,24 @@
 <script src="__PUBLIC__admin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__admin/js/admin-scripts.js"></script>
 <script>
-//是否确认删除
-$(function(){
-	$("#main table tbody tr td a").click(function(){
-		var name = $(this);
-		var id = name.attr("rel"); //对应id
-		if (event.srcElement.outerText == "删除")
-		{
-			if(window.confirm("此操作不可逆，是否确认？"))
-			{
-				$.ajax({
-					type: "POST",
-					url: "/Flink/delete",
-					data: "id=" + id,
-					cache: false, //不缓存此页面
-					success: function (data) {
-						window.location.reload();
-					}
-				});
-			};
-		};
-	});
-});
+    function delLink(id){
+        var c = confirm("确定要删除此链接吗?");
+        if(c == true){
+            $.post('__URL__/del',{'id':id},function(data){
+                var d = JSON.parse(data);
+                if(d.code === '1'){
+                    $('#articleModalLabel').html('删除链接');
+                    $('#delArticleBody').html(d.msg);
+                    $('#delarticle').modal('show');
+                    $('#flink_tr_' + id).remove();
+                }else{
+                    $('#articleModalLabel').html('删除链接');
+                    $('#delArticleBody').html(d.msg);
+                    $('#delarticle').modal('show');
+                }
+            });
+        }
+    }
 </script>
 </body>
 </html>

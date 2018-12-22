@@ -1,12 +1,13 @@
 <?php
 namespace app\babysbreath\controller;
+use app\babysbreath\model\Operation;
 
 class Index extends Comm{
 
     public function index()
     {
 
-        $Name = session('adminId');
+        $Name = session('kkstars_adminId');
         $numberOfLogin = db('admin') -> where('adminId',$Name) -> field('numberOfLogin') -> find();
         session('numberOfLogins',$numberOfLogin['numberOfLogin']);//登陆次数
 

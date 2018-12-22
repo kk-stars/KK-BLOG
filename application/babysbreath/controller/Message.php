@@ -38,7 +38,7 @@ class Message extends Comm{
 
             //操作记录
             $op = new Operation();
-            $op_admin = session('adminName');
+            $op_admin = session('kkstars_adminName');
             $op -> op('delete','留言',$op_admin,'网站留言ID：'.$messageId);
         }else{
             $info = array('code' => '0','message' => '数据删除错误!');

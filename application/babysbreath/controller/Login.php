@@ -6,8 +6,8 @@ use app\babysbreath\model\Operation;
 
 class Login extends Controller{
     protected function _initialize(){
-        session('[destroy]');
-        session(null);
+        //session('[destroy]');
+        //session(null);
 
         $config = db('config') -> where('id','1') -> find();
         $this->assign('conf',$config);
@@ -24,15 +24,16 @@ class Login extends Controller{
                 $admin = db('admin') -> where(['loginName' => $Name,'status' => 1]) -> find();
                 if ($admin['loginPassword'] === $password){
 
-                    session('adminId',$admin['adminId']);//将管理员id存入session会话中
-                    session('adminName',$admin['adminName']);//将管理员登录名称和密码存入session会话中
+                    session('kkstars_adminId',$admin['adminId']);//将管理员id存入session会话中
+                    session('kkstars_adminName',$admin['adminName']);//将管理员登录名称和密码存入session会话中
                     session('loginPassword',$admin['loginPassword']);
+                    session('LoginTime',time());
 
                     $info = array('code' => 1,'message' => "登录成功!正在跳转……",'status' => '1');
 
                     //操作记录
                     $op = new Operation();
-                    $op_admin = session('adminName');
+                    $op_admin = session('kkstars_adminName');
                     $op -> op('login','登录',$op_admin,'登录成功');
 
                     $op -> loginInfo($Name);
@@ -52,8 +53,14 @@ class Login extends Controller{
 
     public function loginExit(){
 
+        //操作记录
+        $op = new Operation();
+        $op_admin = session('kkstars_adminName');
+        $op -> op('loginExit','退出登录',$op_admin,'退出成功');
+
         session('[destroy]');
         session(null);
+
         $this->success('退出成功!',url('Login/login'));
     }
 

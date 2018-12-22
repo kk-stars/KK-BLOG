@@ -19,7 +19,7 @@ class Comm extends Controller{
         if($config == 0){
             $config = db('config') -> limit('1') -> find();
 
-            $redis -> set('CommConfig',$config);
+            $redis -> set('CommConfig',$config,3600 * 24);
         }
         $this->assign('conf',$config);
 
@@ -33,7 +33,7 @@ class Comm extends Controller{
 
             $cate = db('cate') -> where('status',1) -> select();
 
-            $redis -> set('CommCate',$cate);
+            $redis -> set('CommCate',$cate,3600 * 24);
         }
         $this->assign('cate',$cate);
 
@@ -41,6 +41,8 @@ class Comm extends Controller{
         $rightCate = $redisM -> RedisGet('rightCate');
         if($rightCate == 0){
             $rightCate = db('cate') -> where('cateArticles','neq','0') -> field('cateName,cateId') -> select();
+
+            $redis -> set('rightCate',$rightCate,3600 * 24);
         }
         $this->assign('rightCate',$rightCate);
 
@@ -51,7 +53,7 @@ class Comm extends Controller{
             $about['lifeSentence'] = explode('|', $about['lifeSentence']);
             $about['birthDate'] = date('Y-m-d',strtotime($about['birthDate']));
 
-            $redis -> set('CommAboutme',$about);
+            $redis -> set('CommAboutme',$about,3600 * 24);
         }
         $this->assign('about',$about);
 
@@ -79,7 +81,7 @@ class Comm extends Controller{
         if($aid == 0){
             $aid = db('article') -> field('articleId') -> select();
 
-            $redis -> set('CommArticle',$aid);
+            $redis -> set('CommArticle',$aid,3600 * 24);
         }
         foreach($aid as $k => $v){
             $cid = db('comment') -> where('commentArticleid',$v['articleId']) -> count();
@@ -97,7 +99,7 @@ class Comm extends Controller{
         $heat = $redisM -> RedisGet('comtArticles');
         if($heat == 0){
             $heat = db('article') -> where('status',1) -> order('articleComments desc') -> limit(5) -> select();
-            $redis -> set('comtArticles',$heat);
+            $redis -> set('comtArticles',$heat,3600 * 24);
         }
         $this -> assign('comtArticles',$heat);
     }
@@ -110,7 +112,7 @@ class Comm extends Controller{
         $clicks = $redisM -> RedisGet('heatArticles');
         if($clicks == 0){
             $clicks = db('article') -> where('status',1) -> order('articleClicks desc') -> limit(5) -> select();
-            $redis -> set('heatArticles',$clicks);
+            $redis -> set('heatArticles',$clicks,3600 * 24);
         }
         $this -> assign('heatArticles',$clicks);
     }
@@ -123,7 +125,7 @@ class Comm extends Controller{
         $praise = $redisM -> RedisGet('praiseArticles');
         if($praise == 0){
             $praise = db('article') -> where('status',1) -> order('praiseClicks desc') -> limit(5) -> select();
-            $redis -> set('praiseArticles',$praise);
+            $redis -> set('praiseArticles',$praise,3600 * 24);
         }
         $this -> assign('praiseArticles',$praise);
 

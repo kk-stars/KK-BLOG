@@ -17,7 +17,7 @@ class Index extends Comm{
         if($redis -> get('slider') == false){
             //slider 不存在，第一次查询
             $slider = db('article') -> alias('a') -> join('cate c','a.articleCate = c.cateId') -> field('a.*,c.cateName,c.cateId') -> where(['a.status' => 1,'a.slider' => 1]) -> order('a.addTime asc')  -> limit('5') -> select();
-            $redis -> set('slider',$slider);
+            $redis -> set('slider',$slider,3600 * 24);
         }
         $slider = $redis -> get('slider');
         $this->assign('slider',$slider);
@@ -33,7 +33,7 @@ class Index extends Comm{
 
         if($redis -> get('flowData'.$getPage) == false){
             $aData = db('article') -> alias('a') -> join('cate c','a.articleCate = c.cateId') -> field('a.*,c.cateName,c.cateId') -> where('a.status',1) -> order('a.addTime desc') -> paginate(10,true,['page' => $getPage]);
-            $redis -> set('flowData'.$getPage,$aData);
+            $redis -> set('flowData'.$getPage,$aData,3600 * 24);
         }
 
         $aData = $redis -> get('flowData'.$getPage);

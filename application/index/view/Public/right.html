@@ -95,6 +95,7 @@
     </div>
 
     <!--图片-->
+    {if condition = "$about['wechat'] neq ''"}
     <div class="bg-fff box-shadow radius mb-20">
         <div class="tab-category">
             <a href=""><strong>扫我关注</strong></a>
@@ -103,6 +104,7 @@
             <img data-original="__PUBLIC__{$about.wechat}" class="img-responsive lazyload" alt="响应式图片">
         </div>
     </div>
+    {/if}
 
     <!--友情链接-->
 <!--    <div class="bg-fff box-shadow radius mb-20">

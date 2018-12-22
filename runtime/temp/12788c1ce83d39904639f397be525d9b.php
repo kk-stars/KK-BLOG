@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\article\article.html";i:1524713705;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\header.html";i:1524713445;s:77:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\aside.html";i:1524713961;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\prompt.html";i:1517304229;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:80:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\article\article.html";i:1544758167;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\header.html";i:1544511710;s:77:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\aside.html";i:1544758073;s:78:"G:\PHPWAMP_IN2\wwwroot\kk-blog/application/babysbreath\view\Public\prompt.html";i:1517304229;}*/ ?>
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__admin/css/style.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__admin/css/font-awesome.min.css">
 <link rel="apple-touch-icon-precomposed" href="__PUBLIC__admin/images/icon/icon.png">
-<link rel="shortcut icon" href="__PUBLIC__admin/images/icon/favicon.ico">
+<link rel="shortcut icon" href="__PUBLIC__admin/images/icon/favicon.png">
 <script src="__PUBLIC__admin/js/jquery-2.1.4.min.js"></script>
 <!--[if gte IE 9]>
   <script src="__PUBLIC__admin/js/jquery-1.11.1.min.js" type="text/javascript"></script>
@@ -33,10 +33,10 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <?php echo \think\Request::instance()->session('adminName'); ?>
+                    <?php echo \think\Request::instance()->session('kkstars_adminName'); ?>
                 </a>
             </li>
-            <li><a href="<?php echo url('Login/login'); ?>" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            <li><a href="<?php echo url('Login/loginExit'); ?>" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
           </ul>
         </div>
       </div>
@@ -66,7 +66,8 @@
         <li><a class="dropdown-toggle" id="otherMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他</a>
           <ul class="dropdown-menu" aria-labelledby="otherMenu">
             <li><a href="<?php echo url('Flink/flink'); ?>">友情链接</a></li>
-            <li class="disabled"><a data-toggle="modal" data-target="#areDeveloping">访问记录</a></li>
+            <li><a href="<?php echo url('Log/log'); ?>">操作记录</a></li>
+            <!--<li class="disabled"><a data-toggle="modal" data-target="#areDeveloping">访问记录</a></li>-->
           </ul>
         </li>
       </ul>
