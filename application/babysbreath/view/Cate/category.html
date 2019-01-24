@@ -75,7 +75,7 @@
               <tbody>
               	{volist name="cate" id="c"}
 	                <tr id="cid_{$c.cateId}">
-	                  <td>{$c.cateId}</td>
+	                  <td style="text-align: center;">{$c.cateId}</td>
 	                  <td>{if condition="$c['level'] neq 0"}|{/if}<?php echo str_repeat(" —— ",$c['level']);?>{$c.cateName}</td>
 	                  <td>{$c.cateAlias}</td>
 	                  <td>{$c.cateArticles}</td>
@@ -115,6 +115,10 @@
 </div><!-- /.modal -->
 <!--提示模态框-->
   {include file="Public/prompt"}
+<!--个人信息-->
+{include file="Public/info"}
+<!--登陆次数-->
+{include file="Public/loginRecord"}
 <script src="__PUBLIC__admin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__admin/js/admin-scripts.js"></script>
 
@@ -123,7 +127,7 @@
 function delCate(cateId){
 	var c = confirm('确定要删除此栏目吗?');
 	if(c == true){
-		$.post('__URL__/cateRecoveryDel',{'cateId':cateId},function(data){
+		$.post('__URL__/delCate',{'cateId':cateId},function(data){
 			var d = JSON.parse(data);
 			if(d.code == 1){
 				$('#delCateBody').html(d.message);
@@ -137,6 +141,42 @@ function delCate(cateId){
 	}
     return false;
 }
+</script>
+<script>
+    function submitInfo() {
+        var aAdmId = $('#adminId').val();
+        var aAdmPwd = $('#oldPassword').val();
+        var aLogPwd = $('#loginPassword').val();
+        var aNewPwd = $('#newPassword').val();
+
+        if (aAdmPwd != '' && aLogPwd != '' && aNewPwd != '') {
+            if(aLogPwd == aNewPwd){
+
+                $.post('__URL__/info', {
+                    'adminId': aAdmId,
+                    'oldPassword': aAdmPwd,
+                    'loginPassword': aLogPwd,
+                    'newPassword': aNewPwd
+                }, function (info) {
+                    var d = JSON.parse(info);
+                    if (d.code == 1) {
+                        $('#adminModalLabel').html('信息提示');
+                        $('#upAdminBody').html(d.message);
+                        $('#upadmin').modal('show');
+                        $('#seeUserInfo').modal('hide');
+                        setTimeout('location.href = "{:url(\'babysbreath/Login/login\')}";', 2000);
+                    }
+                });
+
+            }else{
+                alert('确认密码填写错误!');
+                return false;
+            }
+        } else {
+            alert('请填写完整再进行提交!');
+            return false;
+        }
+    }
 </script>
 </body>
 </html>

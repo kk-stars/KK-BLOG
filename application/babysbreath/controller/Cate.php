@@ -59,12 +59,17 @@ class Cate extends Comm{
             //操作记录
             $op = new Operation();
             $op_admin = session('kkstars_adminName');
-            $op -> op('delete(update status -> 0)','栏目',$op_admin,$op_details['cateName'].'以及此栏目下的所有子栏目以及文章');
+            $op -> op('delete','栏目',$op_admin,$op_details['cateName'].'栏目以及此栏目下的所有子栏目以及文章');
 
-            $this->success('栏目删除成功!正在跳转……',url('cate/category'));
+            $info = array('code' => 1,'message' => '栏目删除成功!');
+
+            $redis = new Redis();
+            $redis -> rm('CommCate');
+            $redis -> rm('rightCate');
         }else{
-            $this->error('栏目删除失败!');
+            $info = array('code' => 0,'message' => '栏目删除失败!');
         }
+        echo json_encode($info);die;
     }
 
     //回收站
@@ -93,7 +98,11 @@ class Cate extends Comm{
                     $op_admin = session('kkstars_adminName');
                     $op -> op('reduction','栏目',$op_admin,$cateFather['cateName']);
 
-                    $this->success('栏目还原成功!正在跳转……',url('cate/cateRecovery'));
+                    $redis = new Redis();
+                    $redis -> rm('CommCate');
+                    $redis -> rm('rightCate');
+
+                    $this->success('栏目还原成功!正在跳转……',url('cate/category'));
                 }else{
                     $this->error('栏目还原失败!');
                 }
@@ -111,7 +120,7 @@ class Cate extends Comm{
             $articleCate = db('article') -> where('articleCate',$cateId) -> field('articleId') -> select();
             if($articleCate){
                 foreach($articleCate as $k => $v){
-                    $articleDel = db('article') -> where('articleId',$v['articleId']) -> update(['status' => 0]);
+                    $articleDel = db('article') -> where('articleId',$v['articleId']) -> delete();
                 }
             }
 
@@ -119,24 +128,28 @@ class Cate extends Comm{
             $cateChildrenId = $cateModel -> getchilrenid($cateId);
             if ($cateChildrenId){
                 foreach ($cateChildrenId as $k => $v){
-                    CateModel::where(array('cateId' => $v)) -> update(['status' => 0]);
+                    CateModel::where(array('cateId' => $v)) -> delete();
                 }
             }
-            $result = db('cate') -> where('cateId',$cateId) -> update(['status' => 0]);
+            $result = db('cate') -> where('cateId',$cateId) -> delete();
             if($result){
-                $info = array('code' => 1,'message' => '栏目彻底删除成功!正在跳转……');
+                $info = array('code' => 1,'message' => '栏目彻底删除成功!');
+
+                $redis = new Redis();
+                $redis -> rm('CommCate');
+                $redis -> rm('rightCate');
 
                 $op_details = db('cate') -> where('cateId',$cateId) -> field('cateName') -> find();
                 //操作记录
                 $op = new Operation();
                 $op_admin = session('kkstars_adminName');
-                $op -> op('delete','栏目',$op_admin,$op_details['cateName'].'以及此栏目下的所有子栏目以及文章');
+                $op -> op('delete','栏目',$op_admin,$op_details['cateName'].'栏目以及此栏目下的所有子栏目以及文章');
             }else{
                 $info = array('code' => 0,'message' => '栏目彻底删除失败!');
 //              $this->error('栏目彻底删除失败!');
             }
+            echo json_encode($info);die;
         }
-        echo json_encode($info);die;
     }
 
     public function CheckLoginTime()

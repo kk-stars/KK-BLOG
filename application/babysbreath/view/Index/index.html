@@ -118,8 +118,48 @@
   </div>
 </section>
 <!--提示模态框-->
-  {include file="Public/prompt"}
+{include file="Public/prompt"}
+<!--个人信息-->
+{include file="Public/info"}
+<!--登陆次数-->
+{include file="Public/loginRecord"}
 <script src="__PUBLIC__admin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__admin/js/admin-scripts.js"></script>
+<script>
+  function submitInfo() {
+    var aAdmId = $('#adminId').val();
+    var aAdmPwd = $('#oldPassword').val();
+    var aLogPwd = $('#loginPassword').val();
+    var aNewPwd = $('#newPassword').val();
+
+    if (aAdmPwd != '' && aLogPwd != '' && aNewPwd != '') {
+      if(aLogPwd == aNewPwd){
+
+        $.post('__URL__/info', {
+          'adminId': aAdmId,
+          'oldPassword': aAdmPwd,
+          'loginPassword': aLogPwd,
+          'newPassword': aNewPwd
+        }, function (info) {
+          var d = JSON.parse(info);
+          if (d.code == 1) {
+            $('#adminModalLabel').html('信息提示');
+            $('#upAdminBody').html(d.message);
+            $('#upadmin').modal('show');
+            $('#seeUserInfo').modal('hide');
+            setTimeout('location.href = "{:url(\'babysbreath/Login/login\')}";', 2000);
+          }
+        });
+
+      }else{
+        alert('确认密码填写错误!');
+        return false;
+      }
+    } else {
+      alert('请填写完整再进行提交!');
+      return false;
+    }
+  }
+</script>
 </body>
 </html>

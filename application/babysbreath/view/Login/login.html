@@ -28,11 +28,23 @@
 		<form action="" method="post">
 			<input type="text" name="loginName" id="adminname" value="" placeholder="登录名" autocomplete="off" />
 			<input type="password" name="loginPassword" id="adminpwd" value="" placeholder="登录密码" autocomplete="off" />
-			<div class="button-row">
-				<input type="button" onclick="login()" class="sign-in" value="登录" />
-				<input type="reset" class="reset" value="重置" />
-				<div class="clear"></div>
-			</div>
+
+			{if condition="$conf['code'] eq '1'"}
+				<input type="text" style="width:35%;" name="code" id="checkcode" value="" placeholder="验证码" autocomplete="off" />
+				<img src="{:captcha_src()}" id="" style="width:34%;height: 47px;border: 1px solid #fff;border-radius: 4px;margin-top: -5px;" onclick="this.src='{:captcha_src()}?d='+Math.random();" />
+				<div class="button-row">
+					<input type="button" onclick="login({$conf.code})" class="sign-in" value="登录" />
+					<input type="reset" class="reset" value="重置" />
+					<div class="clear"></div>
+				</div>
+			{else}
+				<div class="button-row">
+					<input type="button" onclick="login({$conf.code})" class="sign-in" value="登录" />
+					<input type="reset" class="reset" value="重置" />
+					<div class="clear"></div>
+				</div>
+			{/if}
+
 		</form>
 	</div>
 </div>
@@ -61,9 +73,17 @@ $(function(){
 	});
 });
 
-function login(){
+function login(code){
     var oNval = $('#adminname').val();
 	var oPval = $('#adminpwd').val();
+
+	if(code == '1'){		 //开启
+		var oCode = '1';
+		var oCheckCode = $('#checkcode').val();
+
+	}else if(code == '0'){ //关闭
+		var oCode = '0';
+	}else{}
 
 	if(oNval == ''){
 		$('#infoBody').html('请填写登录名!');
@@ -72,8 +92,14 @@ function login(){
 	}else if(oPval == ''){
 		$('#infoBody').html('请填写登录密码!');
         $('#info').modal('show');
+
+	}else if(oCheckCode == ''){
+		$('#infoBody').html('请填写验证码!');
+		$('#info').modal('show');
+
 	}else{
-		$.post('__URL__/login',{'loginName':oNval,'loginPassword':oPval},function(info){
+		$.post('__URL__/login',{'loginName':oNval,'loginPassword':oPval,
+			'checkCode':oCheckCode,'code':oCode},function(info){
 			var i = JSON.parse(info);
 			if (i.code == 1){
 	            //登录成功
@@ -92,7 +118,7 @@ function login(){
 }
 </script>
 <div class="footer">
-	<p>Copyright ©2018 {$conf.url} Powered By<a href="http://{$conf.url}" target="_blank" title="">{$conf.keywords}</a> Version 1.0.0</p><a href="http://www.miitbeian.gov.cn/" target="_blank" title="">{$conf.beian}</a>
+	<p>Copyright ©2019 {$conf.url} Powered By<a href="http://{$conf.url}" target="_blank" title="">{$conf.keywords}</a> Version 5.2.6</p><a href="http://www.miitbeian.gov.cn/" target="_blank" title="">{$conf.beian}</a>
 </div>
 
 </body>

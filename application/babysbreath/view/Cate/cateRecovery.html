@@ -36,20 +36,20 @@
                   <th width="200px"><span class="glyphicon glyphicon-paperclip"></span> <span class="visible-lg">ID</span></th>
                   <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">名称</span></th>
                   <th width="300px"><span class="glyphicon glyphicon-list-alt"></span> <span class="visible-lg">别名</span></th>
-                  <th width="200px"><span class="glyphicon glyphicon-pushpin"></span> <span class="visible-lg">总数</span></th>
+                  <th width="200px"><span class="glyphicon glyphicon-pushpin"></span> <span class="visible-lg">文章数</span></th>
                   <th width="200px"><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
                 </tr>
               </thead>
               <tbody>
               	{volist name="cate" id="c"}
-	                <tr>
-	                  <td>{$c.cateId}</td>
+	                <tr id="cid_{$c.cateId}">
+	                  <td style="text-align: center;">{$c.cateId}</td>
 	                  <td>{$c.cateName}</td>
 	                  <td>{$c.cateAlias}</td>
 	                  <td>{$c.cateArticles}</td>
 	                  <td>
 	                  	<a href="{:url('cate/cateRecoveryUp',array('cateId' => $c['cateId']))}">还原　</a>
-	                  	<a rel="1" href="{:url('cate/cateRecoveryDel',array('cateId' => $c['cateId']))}" onclick="return confirm('确定要彻底删除吗?(包括此栏目下的文章及子栏目)');">彻底删除</a>
+	                  	<a rel="1" href="javascript:;" onclick="delCate({$c.cateId})">彻底删除</a>
 	                  </td>
 	                </tr>
            		{/volist}
@@ -62,9 +62,88 @@
     </div>
   </div>
 </section>
+<div class="modal fade" id="delCate" tabindex="-1" role="dialog" aria-labelledby="cateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" id="closeX" data-dismiss="modal" aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="cateModalLabel">
+                    删除栏目
+                </h4>
+            </div>
+            <div class="modal-body" id='delCateBody'>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="close" data-dismiss="modal" >关闭 </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!--提示模态框-->
   {include file="Public/prompt"}
+<!--个人信息-->
+{include file="Public/info"}
+<!--登陆次数-->
+{include file="Public/loginRecord"}
 <script src="__PUBLIC__admin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__admin/js/admin-scripts.js"></script>
+<script>
+    //删除评论
+    function delCate(cateId){
+        var c = confirm('确定要彻底删除吗?(包括此栏目下的文章及子栏目)');
+        if(c == true){
+            $.post('__URL__/cateRecoveryDel',{'cateId':cateId},function(data){
+                var d = JSON.parse(data);
+                if(d.code == 1){
+                    $('#delCateBody').html(d.message);
+                    $('#delCate').modal('show');
+                    $('#cid_'+cateId).remove();
+                }else{
+                    $('#delCateBody').html(d.message);
+                    $('#delCate').modal('show');
+                }
+            });
+        }
+        return false;
+    }
+</script>
+<script>
+    function submitInfo() {
+        var aAdmId = $('#adminId').val();
+        var aAdmPwd = $('#oldPassword').val();
+        var aLogPwd = $('#loginPassword').val();
+        var aNewPwd = $('#newPassword').val();
+
+        if (aAdmPwd != '' && aLogPwd != '' && aNewPwd != '') {
+            if(aLogPwd == aNewPwd){
+
+                $.post('__URL__/info', {
+                    'adminId': aAdmId,
+                    'oldPassword': aAdmPwd,
+                    'loginPassword': aLogPwd,
+                    'newPassword': aNewPwd
+                }, function (info) {
+                    var d = JSON.parse(info);
+                    if (d.code == 1) {
+                        $('#adminModalLabel').html('信息提示');
+                        $('#upAdminBody').html(d.message);
+                        $('#upadmin').modal('show');
+                        $('#seeUserInfo').modal('hide');
+                        setTimeout('location.href = "{:url(\'babysbreath/Login/login\')}";', 2000);
+                    }
+                });
+
+            }else{
+                alert('确认密码填写错误!');
+                return false;
+            }
+        } else {
+            alert('请填写完整再进行提交!');
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

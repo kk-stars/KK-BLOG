@@ -43,6 +43,45 @@
         </div>
     </div>
 
+    <!--搜索-->
+    <div class="bg-fff box-shadow radius mb-20">
+        <div class="tab-category">
+            <a href=""><strong>搜索</strong></a>
+        </div>
+        <div class="tab-category-item">
+            <ul class="index_recd">
+                <li class="index_recd_item">
+                    <form action="search" method="get">
+                        <input class="search" id="key" name="k" type="text" maxlength="38" placeholder="请输入搜索内容…" />
+
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__index/plugin/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('body').keyup(function(event){
+                var text = $('#key').val();
+                if(text.length > '38'){
+                    alert('您输入的字符已超出38个字符！');return false;
+                };
+                var isFocus = $('#key').is(':Focus');//判断鼠标焦点是否在输入框里
+                if(isFocus === true){
+                    if(event.keyCode==13){ 	//回车键  13
+                        if(text == ''){
+                            alert('请输入搜索内容');return false;
+                        }else{
+                            $.get('search',{'k':text},function(){});
+                            //$('#submit').trigger('click');                  //回车键触发事件
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
 
     <!--热门推荐-->
     <div class="bg-fff box-shadow radius mb-20">

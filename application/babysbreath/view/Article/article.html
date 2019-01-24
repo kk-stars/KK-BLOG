@@ -54,7 +54,7 @@
             <tbody>
             	{volist name="articleData" id="article"}
 	              <tr height = '87px' id="aid_{$article.articleId}">
-	                <td><input type="checkbox" class="input-control" name="checkbox[]" value="{$article.articleId}" />{$article.articleId}</td>
+	                <td style="text-align: center;">{$article.articleId}</td>
 	                <td class="article-title"><a href="{:url('update/updateArticle',array('articleId' => $article['articleId']))}">{$article.articleTitle}</a></td>
 	                <td>
 	                {if condition="$article['articlePic'] neq ''"}
@@ -64,7 +64,7 @@
 	                {/if}
 	                </td>
 	                <td>{$article.cateName}</td>
-	                <td class="hidden-sm">{$Request.session.adminName}</td>
+	                <td class="hidden-sm">{$Request.session.kkstars_adminName}</td>
 	                <td class="hidden-sm">{$article.articleComments}</td>
 	                <td>{$article.addTime}</td>
 	                <td><a href="{:url('update/updateArticle',array('articleId' => $article['articleId']))}">
@@ -78,16 +78,6 @@
             </tbody>
           </table>
         </div>
-        <footer class="message_footer">
-          <nav>
-            <div class="btn-toolbar operation" style="margin-top: -68px;" role="toolbar">
-              <div class="btn-group" role="group"> <a class="btn btn-default" onClick="select()">全选</a> <a class="btn btn-default" onClick="reverse()">反选</a> <a class="btn btn-default" onClick="noselect()">不选</a> </div>
-              <div class="btn-group" role="group">
-                <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="删除全部选中" name="checkbox_delete">删除</button>
-              </div>
-            </div>
-          </nav>
-        </footer>
       </form>
     </div>
   </div>
@@ -113,6 +103,10 @@
 </div><!-- /.modal -->
 <!--提示模态框-->
   {include file="Public/prompt"}
+<!--个人信息-->
+{include file="Public/info"}
+<!--登陆次数-->
+{include file="Public/loginRecord"}
 <script src="__PUBLIC__admin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__admin/js/admin-scripts.js"></script>
 <script>
@@ -136,6 +130,42 @@ function delarticle(aId){
 	    return false;
 	}
 }
+</script>
+<script>
+	function submitInfo() {
+		var aAdmId = $('#adminId').val();
+		var aAdmPwd = $('#oldPassword').val();
+		var aLogPwd = $('#loginPassword').val();
+		var aNewPwd = $('#newPassword').val();
+
+		if (aAdmPwd != '' && aLogPwd != '' && aNewPwd != '') {
+			if(aLogPwd == aNewPwd){
+
+				$.post('__URL__/info', {
+					'adminId': aAdmId,
+					'oldPassword': aAdmPwd,
+					'loginPassword': aLogPwd,
+					'newPassword': aNewPwd
+				}, function (info) {
+					var d = JSON.parse(info);
+					if (d.code == 1) {
+						$('#adminModalLabel').html('信息提示');
+						$('#upAdminBody').html(d.message);
+						$('#upadmin').modal('show');
+						$('#seeUserInfo').modal('hide');
+						setTimeout('location.href = "{:url(\'babysbreath/Login/login\')}";', 2000);
+					}
+				});
+
+			}else{
+				alert('确认密码填写错误!');
+				return false;
+			}
+		} else {
+			alert('请填写完整再进行提交!');
+			return false;
+		}
+	}
 </script>
 </body>
 </html>

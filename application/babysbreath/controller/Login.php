@@ -6,18 +6,27 @@ use app\babysbreath\model\Operation;
 
 class Login extends Controller{
     protected function _initialize(){
-        //session('[destroy]');
-        //session(null);
 
         $config = db('config') -> where('id','1') -> find();
         $this->assign('conf',$config);
     }
 
     public function login(){
+        $config = db('config') -> where('id','1') -> field('userName') -> find();
 
         if (request()->isPost()){
             $Name = strip_tags($_POST['loginName']);//strip_tags ： 清除字符串中的   HTML 和   PHP 标签
             $password = md5($_POST['loginPassword']);
+
+            $checkCode = input('checkCode');//验证码
+            $code = input('code');//是否开启验证码
+            if($code == '1'){
+                if(!captcha_check($code)){
+                    $info = array('code' => '-2','message' => '验证码错误！');
+                    echo json_encode($info);
+                    die;
+                }
+            }
 
             $info = array();
             if ($Name != null && $password != null){
@@ -25,7 +34,7 @@ class Login extends Controller{
                 if ($admin['loginPassword'] === $password){
 
                     session('kkstars_adminId',$admin['adminId']);//将管理员id存入session会话中
-                    session('kkstars_adminName',$admin['adminName']);//将管理员登录名称和密码存入session会话中
+                    session('kkstars_adminName',$config['userName']);//将管理员登录名称和密码存入session会话中
                     session('loginPassword',$admin['loginPassword']);
                     session('LoginTime',time());
 

@@ -46,7 +46,7 @@
                             </th>
                             <th width="200px">
                                 <span class="glyphicon glyphicon-bookmark"></span>
-                                <span class="visible-lg">国家/省份/城市</span>
+                                <span class="visible-lg">城市</span>
                             </th>
                             <th width="100px">
                                 <span class="glyphicon glyphicon-link"></span>
@@ -56,7 +56,7 @@
                                 <span class="glyphicon glyphicon-list"></span>
                                 <span class="visible-lg">类型</span>
                             </th>
-                            <th width="70px">
+                            <th width="100px">
                                 <span class="glyphicon glyphicon-list"></span>
                                 <span class="visible-lg">模块</span>
                             </th>
@@ -76,10 +76,7 @@
                                 <td style="text-align: center;">{$o.id}</td>
                                 <td class="article-title">{$o.op_admin}</td>
                                 <td class="article-title">{$o.op_ip}</td>
-                                <td class="article-title">
-                                    {if condition = "$o['op_country'] eq ''"}未知{else}{$o.op_country}{/if}/
-                                    {if condition = "$o['op_region'] eq ''"}未知{else}{$o.op_region}{/if}/
-                                    {if condition = "$o['op_city'] eq ''"}未知{else}{$o.op_city}{/if}</td>
+                                <td class="article-title">{$o.op_city}</td>
                                 <td class="article-title">
                                     {if condition = "$o['op_isp'] eq ''"}未知{else}{$o.op_isp}{/if}</td>
                                 <td class="article-title">{$o.op_type}</td>
@@ -121,10 +118,14 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 {include file="Public/prompt"}
+<!--个人信息-->
+{include file="Public/info"}
+<!--登陆次数-->
+{include file="Public/loginRecord"}
 <script src="__PUBLIC__admin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__admin/js/admin-scripts.js"></script>
 <script>
-    function delOperation(id){
+/*    function delOperation(id){
         var c = confirm("确定要删除此记录吗?");
         if(c == true){
             $.post('__URL__/del',{'id':id},function(data){
@@ -140,6 +141,42 @@
                     $('#delarticle').modal('show');
                 }
             });
+        }
+    }*/
+</script>
+<script>
+    function submitInfo() {
+        var aAdmId = $('#adminId').val();
+        var aAdmPwd = $('#oldPassword').val();
+        var aLogPwd = $('#loginPassword').val();
+        var aNewPwd = $('#newPassword').val();
+
+        if (aAdmPwd != '' && aLogPwd != '' && aNewPwd != '') {
+            if(aLogPwd == aNewPwd){
+
+                $.post('__URL__/info', {
+                    'adminId': aAdmId,
+                    'oldPassword': aAdmPwd,
+                    'loginPassword': aLogPwd,
+                    'newPassword': aNewPwd
+                }, function (info) {
+                    var d = JSON.parse(info);
+                    if (d.code == 1) {
+                        $('#adminModalLabel').html('信息提示');
+                        $('#upAdminBody').html(d.message);
+                        $('#upadmin').modal('show');
+                        $('#seeUserInfo').modal('hide');
+                        setTimeout('location.href = "{:url(\'babysbreath/Login/login\')}";', 2000);
+                    }
+                });
+
+            }else{
+                alert('确认密码填写错误!');
+                return false;
+            }
+        } else {
+            alert('请填写完整再进行提交!');
+            return false;
         }
     }
 </script>

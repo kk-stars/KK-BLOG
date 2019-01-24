@@ -1,5 +1,6 @@
 <?php
 namespace app\babysbreath\controller;
+use app\babysbreath\model\Operation;
 
 class Flink extends Comm{
     public function flink()
@@ -13,8 +14,15 @@ class Flink extends Comm{
     {
         if(request() -> isPost()){
             $id = input('id');
-            $result = db('friendshiplink') -> where('friendshipLinkId',$id) -> update(['status' => '0']);
+            $name = db('friendshiplink') -> where('friendshipLinkId',$id) -> field('friendshipLinkName') -> find();
+            $result = db('friendshiplink') -> where('friendshipLinkId',$id) -> delete();
             if($result) {
+
+                //操作记录
+                $op = new Operation();
+                $op_admin = session('kkstars_adminName');
+                $op -> op('delete','友情链接',$op_admin,$name['friendshipLinkName']);
+
                 $info = array('code' => '1','msg' => "删除成功！");
             }else{
                 $info = array('code' => '1','msg' => "删除成功！");

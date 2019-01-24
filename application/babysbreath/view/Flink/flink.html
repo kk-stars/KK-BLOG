@@ -54,8 +54,7 @@
                         <tbody>
                         {volist name="fl" id="l"}
                         <tr id="flink_tr_{$l.friendshipLinkId}">
-                            <td><input type="checkbox" class="input-control" name="checkbox[]" value="{$l.friendshipLinkId}"/>{$l.friendshipLinkId}
-                            </td>
+                            <td style="text-align: center;">{$l.friendshipLinkId}</td>
                             <td class="article-title">{$l.friendshipLinkName}</td>
                             <td><a target="{$l.target}" href="{$l.friendshipLinkURL}">{$l.friendshipLinkURL}</a></td>
                             <td class="article-title">
@@ -105,6 +104,10 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 {include file="Public/prompt"}
+<!--个人信息-->
+{include file="Public/info"}
+<!--登陆次数-->
+{include file="Public/loginRecord"}
 <script src="__PUBLIC__admin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__admin/js/admin-scripts.js"></script>
 <script>
@@ -124,6 +127,42 @@
                     $('#delarticle').modal('show');
                 }
             });
+        }
+    }
+</script>
+<script>
+    function submitInfo() {
+        var aAdmId = $('#adminId').val();
+        var aAdmPwd = $('#oldPassword').val();
+        var aLogPwd = $('#loginPassword').val();
+        var aNewPwd = $('#newPassword').val();
+
+        if (aAdmPwd != '' && aLogPwd != '' && aNewPwd != '') {
+            if(aLogPwd == aNewPwd){
+
+                $.post('__URL__/info', {
+                    'adminId': aAdmId,
+                    'oldPassword': aAdmPwd,
+                    'loginPassword': aLogPwd,
+                    'newPassword': aNewPwd
+                }, function (info) {
+                    var d = JSON.parse(info);
+                    if (d.code == 1) {
+                        $('#adminModalLabel').html('信息提示');
+                        $('#upAdminBody').html(d.message);
+                        $('#upadmin').modal('show');
+                        $('#seeUserInfo').modal('hide');
+                        setTimeout('location.href = "{:url(\'babysbreath/Login/login\')}";', 2000);
+                    }
+                });
+
+            }else{
+                alert('确认密码填写错误!');
+                return false;
+            }
+        } else {
+            alert('请填写完整再进行提交!');
+            return false;
         }
     }
 </script>

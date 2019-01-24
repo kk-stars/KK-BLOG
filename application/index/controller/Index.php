@@ -6,11 +6,6 @@ use think\cache\driver\Redis;
 class Index extends Comm{
     public function index(){
 
-//        $redis = new Redis();
-//        $redis -> set('stars','Babysbreath');
-//        $result = $redis -> get('stars');
-//        dump($result);die;
-
         $redis = new Redis();
 
         //轮播文章

@@ -7,51 +7,80 @@ class Operation extends Model{
 
     public function op($op_type,$op_module,$op_admin,$op_details)
     {
+
+        //op_type   操作类型：login为登录，update为修改操作，delete为删除操作，add为添加操作， other为其它操作
+        //op_module 操作模块：文章，心情随笔，评论，网站留言，栏目，友情链接，设置，管理员密码
+
         if($op_admin == ''){
 
         }else{
-            //op_type   操作类型：login为登录，update为修改操作，delete为删除操作，add为添加操作， other为其它操作
-            //op_module 操作模块：文章，心情随笔，评论，网站留言，栏目，友情链接，设置，管理员密码
+            //配置您申请的appkey
+            $appkey = "ea92c4361076fa3f30c37d7d7e13e028";
+            $op_ip = '125.68.89.117'; //Request::instance() ->  ip(); // 获取用户IP地址
 
-            $op_ip = '125.68.89.117'; //Request::instance() -> ip(); // 获取用户IP地址
-            $url='http://ip.taobao.com/service/getIpInfo.php?ip='.$op_ip;
-            $result = file_get_contents($url);//获取详细的IP地址信息
-            $result = json_decode($result,true);
-            if($result['code']!==0 || !is_array($result['data'])) return false;
-            //return $result['data'];
-            /*
-             * array(13)
-             * {
-             ["ip"] => string(9) "127.0.0.1"
-             ["country"] => string(2) "XX"
-             ["area"] => string(0) ""
-             ["region"] => string(2) "XX"
-             ["city"] => string(8) "内网IP"
-             ["county"] => string(8) "内网IP"
-             ["isp"] => string(8) "内网IP"
-             ["country_id"] => string(2) "xx"
-             ["area_id"] => string(0) ""
-             ["region_id"] => string(2) "xx"
-             ["city_id"] => string(5) "local"
-             ["county_id"] => string(5) "local"
-             ["isp_id"] => string(5) "local"
-             }
-             * */
+//************1.根据IP/域名查询地址************
+            $url = "http://apis.juhe.cn/ip/ip2addr";
+            $params = array(
+                "ip" => $op_ip,//需要查询的IP地址或域名
+                "key" => $appkey,//应用APPKEY(应用详细页查询)
+                "dtype" => "",//返回数据的格式,xml或json，默认json
+            );
+            $paramstring = http_build_query($params);
+            $content = $this -> juhecurl($url,$paramstring);
+            $result = json_decode($content,true);
+            if($result){
+                if($result['error_code']=='0'){
+                    //print_r($result);
 
-            $op = [
-                'op_ip'         => $op_ip,                    //IP地址
-                'op_country'    => $result['data']['country'],//国家
-                'op_region'     => $result['data']["region"], //省份
-                'op_city'       => $result['data']["city"],	  //城市
-                'op_isp'        => $result['data']["isp"],    //运营商
-                'op_region_id'  => $result['data']["region_id"],//省份邮编
-                'op_city_id'    => $result['data']["city_id"],  //城市邮编
-                'op_type'       => $op_type,
-                'op_module'     => $op_module,
-                'op_admin'      => $op_admin,
-                'op_details'    => $op_details,
-            ];
+                    $op = [
+                        'op_ip'         => $op_ip,                 //IP地址
+                        'op_city'       => $result['result']['area'],	       //城市
+                        'op_isp'        => $result['result']['location'],    //运营商
+                        'op_type'       => $op_type,
+                        'op_module'     => $op_module,
+                        'op_admin'      => $op_admin,
+                        'op_details'    => $op_details,
+                    ];
+                }else{
+                    $error =  $result['error_code'].":".$result['reason'];
+
+                    $op = [
+                        'op_ip'         => $op_ip,    //IP地址
+                        'op_city'       => $error,	  //城市
+                        'op_isp'        => $error,    //运营商
+                        'op_type'       => $op_type,
+                        'op_module'     => $op_module,
+                        'op_admin'      => $op_admin,
+                        'op_details'    => $op_details,
+                    ];
+                }
+            }else{
+                $error =  "请求失败";
+
+                $op = [
+                    'op_ip'         => $op_ip,    //IP地址
+                    'op_city'       => $error,	  //城市
+                    'op_isp'        => $error,    //运营商
+                    'op_type'       => $op_type,
+                    'op_module'     => $op_module,
+                    'op_admin'      => $op_admin,
+                    'op_details'    => $op_details,
+                ];
+            }
+
             db('operation') -> insert($op);
+
+            /* 实例：
+             * array(4) {
+                  ["resultcode"] => string(3) "200"
+                  ["reason"] => string(16) "Return Successd!"
+                  ["result"] => array(2) {
+                    ["area"] => string(18) "四川省德阳市"
+                    ["location"] => string(6) "电信"
+                  }
+                  ["error_code"] => int(0)
+               }
+             * */
         }
     }
 
@@ -59,6 +88,49 @@ class Operation extends Model{
         db('admin') -> where('loginName',$Name) -> update(['lastLoginTime' => date("Y-m-d H:i:s")]);/* 保存登录时间  */
         db('admin') -> where('loginName',$Name) -> setInc('numberOfLogin');/* 登录成功后登录次数加  1   */
 
+    }
+
+
+    /**
+     * 请求接口返回内容
+     * @param  string $url [请求的URL地址]
+     * @param  string $params [请求的参数]
+     * @param  int $ipost [是否采用POST形式]
+     * @return  string
+     */
+    function juhecurl($url,$params=false,$ispost=0){
+        $httpInfo = array();
+        $ch = curl_init();
+
+        curl_setopt( $ch, CURLOPT_HTTP_VERSION , CURL_HTTP_VERSION_1_1 );
+        curl_setopt( $ch, CURLOPT_USERAGENT , 'JuheData' );
+        curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT , 60 );
+        curl_setopt( $ch, CURLOPT_TIMEOUT , 60);
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER , true );
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        if( $ispost )
+        {
+            curl_setopt( $ch , CURLOPT_POST , true );
+            curl_setopt( $ch , CURLOPT_POSTFIELDS , $params );
+            curl_setopt( $ch , CURLOPT_URL , $url );
+        }
+        else
+        {
+            if($params){
+                curl_setopt( $ch , CURLOPT_URL , $url.'?'.$params );
+            }else{
+                curl_setopt( $ch , CURLOPT_URL , $url);
+            }
+        }
+        $response = curl_exec( $ch );
+        if ($response === FALSE) {
+            //echo "cURL Error: " . curl_error($ch);
+            return false;
+        }
+        $httpCode = curl_getinfo( $ch , CURLINFO_HTTP_CODE );
+        $httpInfo = array_merge( $httpInfo , curl_getinfo( $ch ) );
+        curl_close( $ch );
+        return $response;
     }
 }
 

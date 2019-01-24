@@ -47,6 +47,9 @@ class Update extends Comm{
                     $op_admin = session('kkstars_adminName');
                     $op -> op('update','文章',$op_admin,$upData['articleTitle']);
 
+                    $redis = new Redis();
+                    $redis -> clear();
+
                     $this->success('修改文章成功!正在跳转……',url('Article/article'));
                 }else{
                     $this->error('修改文章失败!');
@@ -86,6 +89,10 @@ class Update extends Comm{
 
                     $redis -> set('CommCate',$cate);
                 }
+
+                $redis = new Redis();
+                $redis -> rm('CommCate');
+                $redis -> rm('rightCate');
 
                 $this->success('修改栏目成功!正在跳转……',url('cate/category'));
 

@@ -7,14 +7,12 @@ use app\babysbreath\model\Operation;
 
 class Board extends Comm{
     public function board(){
-        $uid = session('userId');
 
         $message = db('message') -> where('status',1) -> order('addTime desc') -> select();
         foreach($message as $k => $v){
             $message[$k]['addTime'] = date('Y年m月d日 H:i:s',strtotime($message[$k]['addTime']));
             $message[$k]['reply'] = db('replymessage') -> where('replyMid',$message[$k]['messageId']) -> select();
         }
-        //dump($message);die;
 
         $this->assign('message',$message);
 
@@ -62,7 +60,7 @@ class Board extends Comm{
                     echo json_encode($info);die;
                 }else{
                     $insResult = db('replymessage') -> insert($reply);
-                    $showReply = db('replymessage') -> where('status',1) -> order('addTime desc') -> find();
+                    $showReply = db('replymessage') -> where('status',1) -> order('replyTime desc') -> find();
                     if($insResult){
                         $info = array('code' => 1,'message' => '回复成功','data' => $showReply);
 

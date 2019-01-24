@@ -38,7 +38,7 @@
                         <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a>
                         <data id="cname" value="{$c.randAtorName}" type="hidden"></data>
                         <data id="cid" value="{$c.commentId}" type="hidden"></data>
-                        <data id="rname" value="{$conf.alias}" type="hidden"></data>
+                        <data id="rname" value="{$conf.userName}" type="hidden"></data>
                         <span class="pull-left date-dz-line">|</span>
 
                         {if condition="$c['praiseState'] eq 1"}
@@ -58,15 +58,13 @@
                     {volist name="$c['reply']" id="cr"}
                     <div class="all-pl-con">
                         <div class="pl-text hfpl-text clearfix">
-                            <a href="about" class="comment-size-name">{$conf.alias} : </a>
+                            <a href="about" class="comment-size-name">{$conf.userName} : </a>
                             <span class="my-pl-con">回复@<span class="comment-size-name">{$cr.cname} </span> :  {$cr.replyContent}
                                 </span>
                         </div>
                         <div class="date-dz">
-                            <span class="date-dz-left pull-left comment-time">{$cr.addTime}</span>
+                            <span class="date-dz-left pull-left comment-time">{$cr.replyTime}</span>
                             <div class="date-dz-right pull-right comment-pl-block">
-                                <!--<a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a>-->
-                                <!--<span class="pull-left date-dz-line">|</span>-->
 
                                 {if condition="$cr['praiseState'] eq 1"}
 
@@ -178,7 +176,7 @@
         }, function (data) {
             var d = JSON.parse(data);
             if (d.code == 1) {
-                var rHtml = '<div class="all-pl-con"><div class="pl-text hfpl-text clearfix"><a href="about" class="comment-size-name">' + d.data.ator + ' : </a><span class="my-pl-con">回复@<span class="comment-size-name">' + d.data.cname + ' </span>:  ' + d.data.replyContent + '</span></div><div class="date-dz"><span class="date-dz-left pull-left comment-time">' + d.data.addTime + '</span><div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">' + d.data.praise + '</i>)</a></div></div></div>';
+                var rHtml = '<div class="all-pl-con"><div class="pl-text hfpl-text clearfix"><a href="about" class="comment-size-name">' + d.data.ator + ' : </a><span class="my-pl-con">回复@<span class="comment-size-name">' + d.data.cname + ' </span>:  ' + d.data.replyContent + '</span></div><div class="date-dz"><span class="date-dz-left pull-left comment-time">' + d.data.replyTime + '</span><div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">' + d.data.praise + '</i>)</a></div></div></div>';
                 $('#replydiv').parents('.comment-show-con-list').find('.hf-list-con').css('display', 'block').prepend(rHtml) && $('#replydiv').siblings('.date-dz-right').find('.pl-hf').addClass('hf-con-block') && $('#replydiv').remove();
 
             } else {

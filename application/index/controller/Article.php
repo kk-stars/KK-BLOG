@@ -18,7 +18,7 @@ class Article extends Comm{
             $ip = implode($ip);
 
             $comment[$k]['addTime'] = date('Y年m月d日 H:i:s',strtotime($comment[$k]['addTime']));
-            $comment[$k]['reply'] = db('replycomment') -> where(['replyCid' => $comment[$k]['commentId']]) -> order('addTime desc') -> select();
+            $comment[$k]['reply'] = db('replycomment') -> where(['replyCid' => $comment[$k]['commentId']]) -> order('replyTime desc') -> select();
             foreach($comment[$k]['reply'] as $k2 => $v2){
 
                 if(isset($_COOKIE['pstate_'.$ip.'_replycomment_'.$comment[$k]['reply'][$k2]['replyId']])){
@@ -84,7 +84,8 @@ class Article extends Comm{
             $cateId = input('cid');
             $cName = db('cate') -> where('cateId',$cateId) -> field('cateName') -> find();
 
-            $articles = db('article') -> alias('a') -> join('cate c','a.articleCate = c.cateId') -> where(['a.articleCate' => $cateId,'a.status' => 1]) -> field('a.*,c.cateName') -> order('addtime desc') -> paginate(13,false,['query' => Request::instance() -> param()]);//'query' => Request::instance() -> param() ::: 保留原有的参数
+            $articles = db('article') -> alias('a') -> join('cate c','a.articleCate = c.cateId') -> where(['a.articleCate' => $cateId,'a.status' => 1]) -> field('a.*,c.cateName') -> order('addtime desc') -> paginate(13,false,['query' => Request::instance() -> param()]);
+            //'query' => Request::instance() -> param() ::: 保留原有的参数
 
             $this -> assign([
                 'cateName' => $cName['cateName'],
@@ -144,7 +145,7 @@ class Article extends Comm{
                     echo json_encode($info);die;
                 }else{
                     $insResult = db('replycomment') -> insert($reply);
-                    $showReply = db('replycomment') -> where('status',1) -> order('addTime desc') -> find();
+                    $showReply = db('replycomment') -> where('status',1) -> order('replyTime desc') -> find();
                     if($insResult){
                         $info = array('code' => 1,'message' => '回复成功','data' => $showReply);
 

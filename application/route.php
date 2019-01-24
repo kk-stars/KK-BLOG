@@ -22,9 +22,11 @@ return [
         'mood'  => 'index/mood/mood',
         'board'  => 'index/board/board',
         'about'  => 'index/about/about',
-        'search'  => 'index/index/search',
         'article' => 'index/Article/article_detail',
         'cate'    => 'index/Article/article',
+        'search'  => 'index/Search/search',
     ],
 
 ];
+
+?>

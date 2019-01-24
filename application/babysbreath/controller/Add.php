@@ -14,7 +14,7 @@ class Add extends Comm{
 
         if(request()->isPost()){
             $data = input('post.');
-            $data['ator'] = "满天星";
+            $data['ator'] = session('kkstars_adminName');
 
             //通过控制器上传图片
             if (!empty($_FILES['articlePic']['name'])){
@@ -31,18 +31,27 @@ class Add extends Comm{
                 }
             }
 
-            $addResult = db('article') -> insert($data);
-            //dump($addResult);die;
-            if($addResult){
+            $validate = \think\loader::Validate('ValidateArticle');
+            if($validate -> check($data)){
 
-                //操作记录
-                $op = new Operation();
-                $op_admin = session('kkstars_adminName');
-                $op -> op('add','文章',$op_admin,$data['articleTitle']);
+                $addResult = db('article') -> insert($data);
+                if($addResult){
 
-                $this->success('文章添加成功!正在跳转……',url('Article/article'));
+                    //操作记录
+                    $op = new Operation();
+                    $op_admin = session('kkstars_adminName');
+                    $op -> op('add','文章',$op_admin,$data['articleTitle']);
+
+                    $redis = new Redis();
+                    $redis -> clear();
+
+                    $this->success('文章添加成功!正在跳转……',url('Article/article'));
+                }else{
+                    $this->error('文章添加失败!');
+                }
+
             }else{
-                $this->error('文章添加失败!');
+                $this -> error($validate -> getError());
             }
         }
         return view();
@@ -57,26 +66,41 @@ class Add extends Comm{
 
         if(request()->isPost()){
             $cateData = input('post.');
-            $result = db('cate') -> insert($cateData);
-            if($result){
 
-                //操作记录
-                $op = new Operation();
-                $op_admin = session('kkstars_adminName');
-                $op -> op('add','栏目',$op_admin,$cateData['cateName']);
+            $validateCate = \think\loader::validate('ValidateCate');
+            if($validateCate -> check($cateData)){
+
+                $result = db('cate') -> insert($cateData);
+                if($result){
+
+                    //操作记录
+                    $op = new Operation();
+                    $op_admin = session('kkstars_adminName');
+                    $op -> op('add','栏目',$op_admin,$cateData['cateName']);
 
 
-                //当添加栏目成功后 需要更新旧缓存
-                if($redis -> has('CommCate')){
+                    //当添加栏目成功后 需要更新旧缓存
+                    if($redis -> has('CommCate')){
 
-                    $cate = db('cate') -> where('status',1) -> select();
+                        $cate = db('cate') -> where('status',1) -> select();
 
-                    $redis -> set('CommCate',$cate);
+                        $redis -> set('CommCate',$cate);
+                    }
+
+                    $redis = new Redis();
+                    $redis -> rm('CommCate');
+                    $redis -> rm('rightCate');
+
+                    $this->success('栏目添加成功!正在跳转……',url('Cate/category'));
+
+                }else{
+                    $this->error('栏目添加失败!');
                 }
 
-                $this->success('栏目添加成功!正在跳转……',url('Cate/category'));
             }else{
-                $this->error('栏目添加失败!');
+
+                $this -> error($validateCate -> getError());
+
             }
         }
         return view();
@@ -98,17 +122,27 @@ class Add extends Comm{
                 }
 
             }
-            $result = db('friendshiplink') -> insert($linkData);
-            if($result){
 
-                //操作记录
-                $op = new Operation();
-                $op_admin = session('kkstars_adminName');
-                $op -> op('add','友情链接',$op_admin,$linkData['friendshipLinkName']);
+            $validateFlink = \think\loader::validate('ValidateFlink');
+            if($validateFlink -> check($linkData)){
 
-                $this->success('链接添加成功!正在跳转……',url('Flink/flink'));
+                $result = db('friendshiplink') -> insert($linkData);
+                if($result){
+
+                    //操作记录
+                    $op = new Operation();
+                    $op_admin = session('kkstars_adminName');
+                    $op -> op('add','友情链接',$op_admin,$linkData['friendshipLinkName']);
+
+                    $this->success('链接添加成功!正在跳转……',url('Flink/flink'));
+                }else{
+                    $this->error('链接添加失败!');
+                }
+
             }else{
-                $this->error('链接添加失败!');
+
+                $this -> error($validateFlink -> getError());
+
             }
         }
         return view();
@@ -130,17 +164,27 @@ class Add extends Comm{
                 }
 
             }
-            $result = db('mood') -> insert($moodData);
-            if($result){
 
-                //操作记录
-                $op = new Operation();
-                $op_admin = session('kkstars_adminName');
-                $op -> op('add','心情随笔',$op_admin,$moodData['moodTitle']);
+            $validateMood = \think\loader::validate('ValidateMood');
+            if($validateMood -> check($moodData)){
 
-                $this->success('新心情添加成功!正在跳转……',url('mood/mood'));
+                $result = db('mood') -> insert($moodData);
+                if($result){
+
+                    //操作记录
+                    $op = new Operation();
+                    $op_admin = session('kkstars_adminName');
+                    $op -> op('add','心情随笔',$op_admin,$moodData['moodTitle']);
+
+                    $this->success('新心情添加成功!正在跳转……',url('mood/mood'));
+                }else{
+                    $this->error('新心情添加失败!');
+                }
+
             }else{
-                $this->error('新心情添加失败!');
+
+                $this -> error($validateMood -> getError());
+
             }
         }
         return view();

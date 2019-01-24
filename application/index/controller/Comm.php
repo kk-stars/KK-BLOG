@@ -5,14 +5,11 @@ use think\cache\driver\Redis;
 use think\Cookie;
 use think\Request;
 use app\index\model\RedisModel;
-//use think\Db;
 
 class Comm extends Controller{
     public function _initialize(){
         $redis = new Redis();
         $redisM = new RedisModel();
-        //$result = Db::query('call cateIn(1)');//调用存储过程
-        //dump($result);die;
 
         //网站配置
         $config = $redisM -> RedisGet('CommConfig');
@@ -75,8 +72,6 @@ class Comm extends Controller{
 
         $this -> praiseArticles();
 
-        //$this -> tags();
-
         $aid = $redisM -> RedisGet('CommArticle');
         if($aid == 0){
             $aid = db('article') -> field('articleId') -> select();
@@ -129,23 +124,6 @@ class Comm extends Controller{
         }
         $this -> assign('praiseArticles',$praise);
 
-    }
-
-    public function tags(){
-
-        $tag = db('article') -> where('status',1) -> distinct('articleTags') -> field('articleTags') -> select();
-        foreach($tag as $k => $v){
-            $tags[] = implode('', $tag[$k]);
-        }
-        foreach($tags as $k2 => $v2){
-            $tagss[] = explode('|', $tags[$k2]);
-        }
-        foreach($tagss as $k3 => $v3){
-            foreach($v3 as $k4 => $v4){
-                $tagsss[] = $v4;
-            }
-        }
-        $this->assign('tags',$tagsss);
     }
 
     //点赞

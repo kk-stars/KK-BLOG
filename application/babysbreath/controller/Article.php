@@ -1,6 +1,7 @@
 <?php
 namespace app\babysbreath\controller;
 use app\babysbreath\model\Operation;
+use think\cache\driver\Redis;
 
 class Article extends Comm{
     protected function _initialize(){
@@ -11,7 +12,6 @@ class Article extends Comm{
         }
 
         $aid = db('article') -> field('articleId') -> select();
-        //$article = db('article') -> select();
         foreach($aid as $k => $v){
             $cid = db('comment') -> where('commentArticleid',$v['articleId']) -> count();
             db('article') -> where('articleId',$v['articleId']) -> update(['articleComments' => $cid]);
@@ -34,6 +34,9 @@ class Article extends Comm{
         if ($update){
             $info = array('code' => 1,'message' => '删除文章成功!');
 
+            $redis = new Redis();
+            $redis -> clear();
+
             //操作记录
             $op = new Operation();
             $op_admin = session('kkstars_adminName');
@@ -54,6 +57,9 @@ class Article extends Comm{
             $update = db('article') -> where('ArticleId',$articleId) -> update(['status' => '1']);
             if ($update){
                 $info = array('code' => 1,'message' => '还原文章成功!');
+
+                $redis = new Redis();
+                $redis -> clear();
 
                 //操作记录
                 $op = new Operation();
@@ -83,9 +89,21 @@ class Article extends Comm{
         $articleId = input('articleId');
         $op_details = db('article') -> where('articleId',$articleId) -> field('articleTitle') -> find();
         if($articleId){
+
+            //在删除文章前需先删除此文章下的评论以及回复评论
+            $cid = db('comment') -> where('commentArticleid',$articleId) -> field('commentId') -> select();
+            foreach($cid as $key => $value){
+                db('replycomment') -> where('replyCid',$value['commentId']) -> delete();
+            }
+            db('comment') -> where('commentArticleid',$articleId) -> delete();
+
             $result = db('article') -> where('articleId',$articleId) -> delete();
+
             if($result){
                 $info = array('code' => 1,'message' => '文章彻底删除成功!');
+
+                $redis = new Redis();
+                $redis -> clear();
 
                 //操作记录
                 $op = new Operation();
@@ -94,8 +112,8 @@ class Article extends Comm{
             }else{
                 $info = array('code' => 0,'message' => '文章彻底删除失败!');
             }
+            echo json_encode($info);die;
         }
-        echo json_encode($info);die;
     }
 
     public function CheckLoginTime()

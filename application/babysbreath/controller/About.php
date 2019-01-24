@@ -36,6 +36,9 @@ class About extends Comm{
                     $redis -> rm('CommAboutme');
 
                     $this->success('修改成功！');
+
+                    $redis = new Redis();
+                    $redis -> rm('CommAboutme');
                 }else{
                     $this->error('修改失败！',url('About/about'));
                 }

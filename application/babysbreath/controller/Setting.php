@@ -36,20 +36,29 @@ class Setting extends Comm{
                     $config['close'] = 0;
                 }
 
-                $upConf = db('config') -> where('id','1') -> update($config);
-                if($upConf){
+                $validateSetting = \think\loader::validate('ValidateSetting');
+                if($validateSetting -> check($config)){
 
-                    //记录操作
-                    $op = new Operation();
-                    $op_admin = session('kkstars_adminName');
-                    $op -> op('update','设置',$op_admin,'修改设置成功！');
+                    $upConf = db('config') -> where('id','1') -> update($config);
+                    if($upConf){
 
-                    $redis = new Redis();
-                    $redis -> rm('CommConfig');
+                        //记录操作
+                        $op = new Operation();
+                        $op_admin = session('kkstars_adminName');
+                        $op -> op('update','设置',$op_admin,'修改设置成功！');
 
-                    $this->success('修改成功！');
+                        $redis = new Redis();
+                        $redis -> rm('CommConfig');
+
+                        $this->success('修改成功！');
+                    }else{
+                        $this->error('修改失败！',url('setting/setting'));
+                    }
+
                 }else{
-                    $this->error('修改失败！',url('setting/setting'));
+
+                    $this -> error($validateSetting -> getError());
+
                 }
             }else{
                 $this->error('修改失败！你无权限修改网站设置',url('setting/setting'));

@@ -30,10 +30,8 @@ class Index extends Comm{
             } else {
                 $br = 'Other';
             }
-            //return $br;
         } else {
             $br = 'unknow';
-            //return $br;
         }
         session('browser',$br);
         return view();

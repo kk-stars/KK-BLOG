@@ -239,7 +239,7 @@ return [
 
     //视图输出字符串替换
     'view_replace_str'       => [
-        '__PUBLIC__'          => '/kk-blog/public/static/',
+        '__PUBLIC__'          => '/kkstars/public/static/',
         '__ROOT__'          => '/',
     ],
 

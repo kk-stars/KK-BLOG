@@ -118,15 +118,6 @@
 		                <input type="radio" name="slider" value="0" checked/>NO
 	                {/if}
                 </p>
-              	<p><label>图片库：</label>
-	                {if condition="$article['saveImg'] eq 1"}
-              			<input type="radio" name="saveImg" value="1" checked/>YES
-              			<input type="radio" name="saveImg" value="0" />NO
-	                {else /}
-              			<input type="radio" name="saveImg" value="1" />YES
-              			<input type="radio" name="saveImg" value="0" checked/>NO
-	                {/if}
-              	</p>
                 <p><label>公开度：</label>
 	                {if condition="$article['overt'] eq 1"}
 		                <input type="radio" name="overt" value="1" checked/>公开
@@ -150,6 +141,10 @@
 </section>
 <!--提示模态框-->
   {include file="Public/prompt"}
+<!--个人信息-->
+{include file="Public/info"}
+<!--登陆次数-->
+{include file="Public/loginRecord"}
 <script src="__PUBLIC__admin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__admin/js/admin-scripts.js"></script>
 <script id="uploadEditor" type="text/plain" style="display:none;"></script>
@@ -190,6 +185,42 @@ function upFiles() {
     var myFiles = _uploadEditor.getDialog("attachment");
     myFiles.open();
 }
+</script>
+<script>
+    function submitInfo() {
+        var aAdmId = $('#adminId').val();
+        var aAdmPwd = $('#oldPassword').val();
+        var aLogPwd = $('#loginPassword').val();
+        var aNewPwd = $('#newPassword').val();
+
+        if (aAdmPwd != '' && aLogPwd != '' && aNewPwd != '') {
+            if(aLogPwd == aNewPwd){
+
+                $.post('__URL__/info', {
+                    'adminId': aAdmId,
+                    'oldPassword': aAdmPwd,
+                    'loginPassword': aLogPwd,
+                    'newPassword': aNewPwd
+                }, function (info) {
+                    var d = JSON.parse(info);
+                    if (d.code == 1) {
+                        $('#adminModalLabel').html('信息提示');
+                        $('#upAdminBody').html(d.message);
+                        $('#upadmin').modal('show');
+                        $('#seeUserInfo').modal('hide');
+                        setTimeout('location.href = "{:url(\'babysbreath/Login/login\')}";', 2000);
+                    }
+                });
+
+            }else{
+                alert('确认密码填写错误!');
+                return false;
+            }
+        } else {
+            alert('请填写完整再进行提交!');
+            return false;
+        }
+    }
 </script>
 </body>
 </html>

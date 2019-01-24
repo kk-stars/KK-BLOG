@@ -58,13 +58,67 @@ class Comm extends Controller{
 
                 session('[destroy]');
                 session(null);
-                $this -> error('登录已超时，请重新登录',url('Login/login'));
+                $this -> error('登录已超时，请重新登录系统',url('Login/login'));
             }else{
                 session('LoginTime',$NowTime);
             }
         }else{
             $this->error('尚未登录系统!请先登录……',url('Login/Login'));
         }
+    }
+
+    public function info(){
+
+        if(request()->isPost()){
+            $aInfo['adminId'] = input('adminId');
+            $aInfo['loginPassword'] = input('loginPassword');
+
+            $aOldPwd = md5(input('oldPassword')); //原始密码
+            $aNewPwd = input('newPassword');//确认密码
+
+
+            $dataTableUserPwd = db('admin') -> where('adminId',$aInfo['adminId']) -> field('loginPassword') -> find();
+            $dataTableUserPwd = $dataTableUserPwd['loginPassword'];
+
+            if($aOldPwd != '' && $aInfo['loginPassword'] != '' && $aNewPwd != ''){
+
+                //修改密码
+                if($aOldPwd === $dataTableUserPwd && $aNewPwd === $aInfo['loginPassword']){
+                    $aInfo['loginPassword'] = md5($aInfo['loginPassword']);
+                    $result = db('admin') -> where('adminId',$aInfo['adminId']) -> update($aInfo);
+                    if($result){
+
+                        //操作记录
+                        $op = new Operation();
+                        $op_admin = session('kkstars_adminName');
+                        $op -> op('Update Password','修改密码',$op_admin,'您已成功修改密码，需重新登录系统！');
+
+                        session('[destroy]');
+                        session(null);
+                        $info = array('code' => '1', 'message' => '您已成功修改密码，需重新登录系统！');
+
+                    }else{
+                        $info = array('code' => '-1', 'message' => '修改密码失败!','data' => $aInfo);
+                    }
+                }else{
+                    $info = array('code' => '-2' , 'message' => '密码错误!');
+                }
+            }else{
+                $info = array('code' => '-3' , 'message' => '请填写完整再进行提交!');
+            }
+            echo json_encode($info);die;
+        }
+    }
+
+    public function loginLog()
+    {
+        $login = input('login');
+        if($login){
+            $log = db('operation') -> where('op_type',$login) -> field('op_city,op_ip,op_time,op_details') -> order('op_time desc') -> limit(20) -> select();
+            $info = array('code' => '1' , 'message' => $log);
+            echo json_encode($info);die;
+        }
+
     }
 }
 
