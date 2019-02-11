@@ -359,6 +359,14 @@ ul.infos p {
 }
 
 
+.hotusers-header {
+	display:none;
+}
+
+.cyWalls-header a{
+	color:#024f9f;
+}
+
 
 @media screen and (max-width:640px) {
     .slider .bd img { height: 130px;}/*slider height*/

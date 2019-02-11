@@ -32,11 +32,6 @@ class Update extends Comm{
                     }else{
                         return $this->error($pic->getError);
                     }
-
-                    //等于1 -> 将文章图片保存到图库
-                    if($upData['saveImg'] == 1){
-                        db('imgs') -> insert(['imgSrc' => $upData['articlePic']]);
-                    }
                 }
 
                 $update = $articleModel-> update($upData);

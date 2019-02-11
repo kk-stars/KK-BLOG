@@ -246,7 +246,7 @@ return [
     //验证码
     'captcha'  => [
         // 验证码字符集合
-        'codeSet'  => '23456789ABCDEFGHJKLMNPQRTUVWXY',//abcdefhijkmnpqrstuvwxyz
+        'codeSet'  => '23456789abcdefhijkmnpqrstuvwxyz',//ABCDEFGHJKLMNPQRTUVWXY
         // 验证码字体大小(px)
         'fontSize' => 18,
         // 是否画混淆曲线

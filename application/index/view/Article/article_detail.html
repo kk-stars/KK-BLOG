@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>文章详情 - {$conf.title}</title>
+    <title>{$a.articleTitle} - {$conf.title}</title>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -94,7 +94,17 @@
 
                 </div>
             </div>
-            {include file="article/comment"}
+            
+            <!--PC版-->
+			<div id="SOHUCS" sid="{$a.articleId}" ></div>
+			<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+			<script type="text/javascript">
+			window.changyan.api.config({
+			appid: 'cyu3bqya0',
+			conf: 'prod_5fc364904fa905b12519a6c17326888d'
+			});
+			</script>
+			
         </div>
         {include file="Public/right"}
     </div>

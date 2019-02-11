@@ -26,9 +26,6 @@ class Add extends Comm{
                 }else{
                     return $this->error($pic->getError());
                 }
-                if($data['saveImg'] == 1){
-                    db('imgs') -> insert(['imgSrc' => $data['articlePic']]);
-                }
             }
 
             $validate = \think\loader::Validate('ValidateArticle');

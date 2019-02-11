@@ -10,12 +10,6 @@ class Article extends Comm{
         if (!session('kkstars_adminId') && !session('LoginTime') && !session('kkstars_adminName')){
             $this->error('尚未登录系统!请先登录……',url('Login/Login'));
         }
-
-        $aid = db('article') -> field('articleId') -> select();
-        foreach($aid as $k => $v){
-            $cid = db('comment') -> where('commentArticleid',$v['articleId']) -> count();
-            db('article') -> where('articleId',$v['articleId']) -> update(['articleComments' => $cid]);
-        }
     }
 
 
@@ -40,7 +34,7 @@ class Article extends Comm{
             //操作记录
             $op = new Operation();
             $op_admin = session('kkstars_adminName');
-            $op -> op('delete(update status -> 0)','文章',$op_admin,$op_details['articleTitle']);
+            $op -> op('delete()','文章',$op_admin,$op_details['articleTitle']);
         }else {
             $info = array('code' => 0,'message' => '删除文章成功!');
         }
@@ -90,13 +84,6 @@ class Article extends Comm{
         $op_details = db('article') -> where('articleId',$articleId) -> field('articleTitle') -> find();
         if($articleId){
 
-            //在删除文章前需先删除此文章下的评论以及回复评论
-            $cid = db('comment') -> where('commentArticleid',$articleId) -> field('commentId') -> select();
-            foreach($cid as $key => $value){
-                db('replycomment') -> where('replyCid',$value['commentId']) -> delete();
-            }
-            db('comment') -> where('commentArticleid',$articleId) -> delete();
-
             $result = db('article') -> where('articleId',$articleId) -> delete();
 
             if($result){
@@ -108,7 +95,7 @@ class Article extends Comm{
                 //操作记录
                 $op = new Operation();
                 $op_admin = session('kkstars_adminName');
-                $op -> op('delete','文章',$op_admin,$op_details['articleTitle']);
+                $op -> op('destory','文章',$op_admin,$op_details['articleTitle']);
             }else{
                 $info = array('code' => 0,'message' => '文章彻底删除失败!');
             }

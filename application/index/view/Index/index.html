@@ -17,17 +17,17 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__index/css/common.css"/>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__index/plugin/pifu/pifu.css"/>
     <script type="application/x-javascript">
-    addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    }
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
 
-    function showSide() {
-        $('.navbar-nav').toggle();
-    }
+        function showSide() {
+            $('.navbar-nav').toggle();
+        }
     </script>
     <script type="text/javascript" src="__PUBLIC__index/js/ajax.js"></script>
     <style>
@@ -54,7 +54,7 @@
                     //如果没有数据
                     if(!d.data.length){
                         var load = document.getElementById('load');// 加载
-                        load.innerHTML = '没有数据了 :(';
+                        load.innerHTML = '到底啦 :(';
                         load.setAttribute('style', 'pointer-events: none');
                     }
 
@@ -109,17 +109,13 @@
                         var cid = d.data[i].cateId;
                         var cUrl = "cate" + "?cid=" + cid;
 
-                        if(d.data[i].articleClicks == '' || d.data[i].articleClicks === null){
-                            d.data[i].articleClicks = 0;
-                        }
-
                         if(d.data[i].articlePic == '' || d.data[i].articlePic == null){
 
-                            var html = "<li class='index_arc_item no_pic'><h4 class='title'><a href='article?aid=" + d.data[i].articleId + "'>" + d.data[i].articleTitle + "</a></h4><div class='date_hits'><span>" + d.data[i].ator + "</span><span>" + d.data[i].addTime.substr(0,10) + "</span><span><a href='cate?cid=" + d.data[i].cateId + "'>" + d.data[i].cateName + "</a></span><p class='hits'><i class='Hui-iconfont' title='点击量'>&#xe6c1;</i> " + d.data[i].articleClicks + " °</p><p class='commonts'><i class='Hui-iconfont' title='评论'>&#xe622;</i><span id='sourceId::105' class='cy_cmt_count'>" + d.data[i].articleComments + "</span></p></div><div class='desc'>" + contt + "</div></li>";
+                            var html = "<li class='index_arc_item no_pic'><h4 class='title'><a href='article?aid=" + d.data[i].articleId + "'>" + d.data[i].articleTitle + "</a></h4><div class='date_hits'><span>" + d.data[i].ator + "</span><span>" + d.data[i].addTime.substr(0,10) + "</span><span><a href='cate?cid=" + d.data[i].cateId + "'>" + d.data[i].cateName + "</a></span></div><div class='desc'>" + contt + "</div></li>";
 
                         }else{
 
-                            var html = "<li class='index_arc_item'><a href='article?aid=" + d.data[i].articleId + "' class='pic'><img class='lazyload' src='__PUBLIC__" + d.data[i].articlePic + "' data-original='__PUBLIC__" + d.data[i].articlePic + "' alt='" + d.data[i].articleTitle + "'></a><h4 class='title'><a href='article?aid=" + d.data[i].articleId + "'>" + d.data[i].articleTitle + "</a></h4><div class='date_hits'><span>" + d.data[i].ator + "</span><span>" + d.data[i].addTime.substr(0,10) + "</span><span><a href='cate?cid=" + d.data[i].cateId + "'>" + d.data[i].cateName + "</a></span><p class='hits'><i class='Hui-iconfont' title='点击量'></i> " + d.data[i].articleClicks + " ° </p><p class='commonts'><i class='Hui-iconfont' title=''></i> <span class='cy_cmt_count'>" + d.data[i].articleComments + "</span></p></div><div class='desc'>" + contt + "</div></li>";
+                            var html = "<li class='index_arc_item'><a href='article?aid=" + d.data[i].articleId + "' class='pic'><img class='lazyload' src='__PUBLIC__" + d.data[i].articlePic + "' data-original='__PUBLIC__" + d.data[i].articlePic + "' alt='" + d.data[i].articleTitle + "'></a><h4 class='title'><a href='article?aid=" + d.data[i].articleId + "'>" + d.data[i].articleTitle + "</a></h4><div class='date_hits'><span>" + d.data[i].ator + "</span><span>" + d.data[i].addTime.substr(0,10) + "</span><span><a href='cate?cid=" + d.data[i].cateId + "'>" + d.data[i].cateName + "</a></span></div><div class='desc'>" + contt + "</div></li>";
                         }
 
                         oUl.innerHTML += html;
@@ -150,29 +146,31 @@
 <section class="container pt-20">
     <!--left-->
     <div class="col-sm-9 col-md-9">
+        {if condition="$slider neq null"}
         <!--滚动图-->
         <div class="slider_main">
             <div class="slider">
                 <div class="bd">
                     <ul>
                         {volist name="slider" id="s"}
-                            <li>
-                                <a href="article?aid={$s.articleId}" target="_blank">
-                                    <img title="<?php echo mb_strlen($s['articleTitle'],'utf-8') > 8 ? mb_substr($s['articleTitle'],0,8,'utf-8').' . . . ' : $s['articleTitle'] ?>" src="__PUBLIC__{$s.articlePic}" class="sliderImg" />
-                                </a>
-                            </li>
+                        <li>
+                            <a href="article?aid={$s.articleId}" target="_blank">
+                                <img title="<?php echo mb_strlen($s['articleTitle'],'utf-8') > 8 ? mb_substr($s['articleTitle'],0,8,'utf-8').' . . . ' : $s['articleTitle'] ?>" src="__PUBLIC__{$s.articlePic}" class="sliderImg" />
+                            </a>
+                        </li>
                         {/volist}
                     </ul>
                 </div>
                 <ol class="hd cl dots">
                     {volist name="slider" id="s"}
-                        <li>{$key + 1}</li>
+                    <li>{$key + 1}</li>
                     {/volist}
                 </ol>
                 <a class="slider-arrow prev" href="javascript:void(0)"></a>
                 <a class="slider-arrow next" href="javascript:void(0)"></a>
             </div>
         </div>
+        {/if}
 
         <div class="mt-20 bg-fff box-shadow radius mb-5">
             <div class="tab-category">

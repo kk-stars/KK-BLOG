@@ -3,6 +3,7 @@ namespace app\babysbreath\controller;
 
 use app\babysbreath\model\Cate as CateModel;
 use app\babysbreath\model\Operation;
+use think\cache\driver\Redis;
 
 class Cate extends Comm{
 

@@ -1,6 +1,7 @@
 <?php
 namespace app\babysbreath\controller;
 use app\babysbreath\model\Operation;
+use think\cache\driver\Redis;
 
 class Index extends Comm{
 
@@ -44,5 +45,22 @@ class Index extends Comm{
 
     public function config(){
 
+    }
+    
+    public function refresh()
+    {
+    	$code = input('code');
+    	if($code == '1'){
+    		
+    		$redis = new Redis();
+    		$result = $redis -> clear();
+    		if($result){
+    			$info = array('code' => '1','message' => '刷新成功！');
+    		}else{
+    			$info = array('code' => '1','message' => '刷新失败！');
+    		}
+    		echo json_encode($info);
+    		
+    	}
     }
 }

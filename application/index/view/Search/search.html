@@ -89,11 +89,15 @@
                             <span><?php echo mb_substr($a['addTime'],0,10,'utf-8') ; ?></span>
                             <span>{$a.cateName}</span>
                             <p class="hits">
-                                <i class="Hui-iconfont" title="点击量">&#xe6c1;</i> {$a.articleClicks}°
+                                <i class="Hui-iconfont" title="点击量">&#xe6c1;</i> {$a.articleClicks}°&nbsp;&nbsp;&nbsp;
                             </p>
                             <p class="commonts">
                                 <i class="Hui-iconfont" title="评论量">&#xe622;</i>
-                                <span class="cy_cmt_count">{$a.articleComments}</span>
+                                <span class="cy_cmt_count">
+                                	<span id = "sourceId::{$a.articleId}" class = "cy_cmt_count" ></span>
+	                                <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cyu3bqya0">
+	                                </script>
+                                </span>
                             </p>
                         </div>
                         <div class="desc">
@@ -110,11 +114,15 @@
                             <span><?php echo mb_substr($a['addTime'],0,10,'utf-8') ; ?></span>
                             <span>{$a.cateName}</span>
                             <p class="hits">
-                                <i class="Hui-iconfont" title="点击量">&#xe6c1;</i> {$a.articleClicks} °
+                                <i class="Hui-iconfont" title="点击量">&#xe6c1;</i> {$a.articleClicks} °&nbsp;&nbsp;&nbsp;
                             </p>
                             <p class="commonts">
                                 <i class="Hui-iconfont" title="评论量">&#xe622;</i>
-                                <span id="sourceId::105" class="cy_cmt_count">{$a.articleComments}</span>
+                                <span class="cy_cmt_count">
+                                	<span id = "sourceId::{$a.articleId}" class = "cy_cmt_count" ></span>
+	                                <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cyu3bqya0">
+	                                </script>
+                                </span>
                             </p>
                         </div>
                         <div class="desc">

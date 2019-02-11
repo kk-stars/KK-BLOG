@@ -21,14 +21,13 @@ class Login extends Controller{
             $checkCode = input('checkCode');//验证码
             $code = input('code');//是否开启验证码
             if($code == '1'){
-                if(!captcha_check($code)){
+            	if(captcha_check($checkCode) == false){
                     $info = array('code' => '-2','message' => '验证码错误！');
                     echo json_encode($info);
                     die;
                 }
             }
 
-            $info = array();
             if ($Name != null && $password != null){
                 $admin = db('admin') -> where(['loginName' => $Name,'status' => 1]) -> find();
                 if ($admin['loginPassword'] === $password){

@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>BABYSBREATH❀</title>
-<link rel="icon" type="image/png" href="__PUBLIC__index/assets/i/logo.png">
 <link rel="shortcut icon" href="__PUBLIC__admin/images/icon/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,7 +30,7 @@
 
 			{if condition="$conf['code'] eq '1'"}
 				<input type="text" style="width:35%;" name="code" id="checkcode" value="" placeholder="验证码" autocomplete="off" />
-				<img src="{:captcha_src()}" id="" style="width:34%;height: 47px;border: 1px solid #fff;border-radius: 4px;margin-top: -5px;" onclick="this.src='{:captcha_src()}?d='+Math.random();" />
+				<img src="{:captcha_src()}" id="codeimg" style="width:34%;height: 47px;border: 1px solid #fff;border-radius: 4px;margin-top: -5px;" onclick="this.src='{:captcha_src()}?d='+Math.random();" />
 				<div class="button-row">
 					<input type="button" onclick="login({$conf.code})" class="sign-in" value="登录" />
 					<input type="reset" class="reset" value="重置" />
@@ -73,6 +72,10 @@ $(function(){
 	});
 });
 
+function captcha(){
+	$("#codeimg").attr("src","{:captcha_src()}" + "?d=" + Math.random());
+}
+
 function login(code){
     var oNval = $('#adminname').val();
 	var oPval = $('#adminpwd').val();
@@ -81,6 +84,13 @@ function login(code){
 		var oCode = '1';
 		var oCheckCode = $('#checkcode').val();
 
+		if(oCheckCode == ''){
+			$('#infoBody').html('请填写验证码!');
+			$('#info').modal('show');
+			captcha();
+
+		}
+
 	}else if(code == '0'){ //关闭
 		var oCode = '0';
 	}else{}
@@ -88,18 +98,15 @@ function login(code){
 	if(oNval == ''){
 		$('#infoBody').html('请填写登录名!');
         $('#info').modal('show');
+		captcha();
 
 	}else if(oPval == ''){
 		$('#infoBody').html('请填写登录密码!');
         $('#info').modal('show');
-
-	}else if(oCheckCode == ''){
-		$('#infoBody').html('请填写验证码!');
-		$('#info').modal('show');
+		captcha();
 
 	}else{
-		$.post('__URL__/login',{'loginName':oNval,'loginPassword':oPval,
-			'checkCode':oCheckCode,'code':oCode},function(info){
+		$.post('__URL__/login',{'loginName':oNval,'loginPassword':oPval,'checkCode':oCheckCode,'code':oCode},function(info){
 			var i = JSON.parse(info);
 			if (i.code == 1){
 	            //登录成功
@@ -112,6 +119,7 @@ function login(code){
 	            /*	 提示登录失败信息	*/
 				$('#infoBody').html(i.message);
 	            $('#info').modal('show');
+				captcha();
 	        }
 		})
 	}

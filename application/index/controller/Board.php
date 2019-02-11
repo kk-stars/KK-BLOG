@@ -1,9 +1,9 @@
 <?php
 namespace app\index\controller;
 use think\Controller;
-use think\Cookie;
 use think\Request;
 use app\babysbreath\model\Operation;
+use app\index\model\GetIP;
 
 class Board extends Comm{
     public function board(){
@@ -12,6 +12,9 @@ class Board extends Comm{
         foreach($message as $k => $v){
             $message[$k]['addTime'] = date('Y年m月d日 H:i:s',strtotime($message[$k]['addTime']));
             $message[$k]['reply'] = db('replymessage') -> where('replyMid',$message[$k]['messageId']) -> select();
+            foreach($message[$k]['reply'] as $k2 => $v2){
+            	$message[$k]['reply'][$k2]['replyTime'] = date('Y年m月d日 H:i:s',strtotime($message[$k]['reply'][$k2]['replyTime']));
+            }
         }
 
         $this->assign('message',$message);
@@ -22,7 +25,8 @@ class Board extends Comm{
     public function add(){
         if(request()->isPost()){
             $data['messageContent'] = strip_tags(input('content'));
-            $data['atorIP'] = Request::instance() -> ip(); // 获取用户IP地址
+            $ip = new GetIP();
+            $data['atorIP'] = $ip -> GetIP(); // 获取用户IP地址
 
             $getAtorName = new randName();
             $data['randAtorName'] = $getAtorName -> getName(2);
@@ -52,7 +56,8 @@ class Board extends Comm{
     public function reply(){
         if(request() -> isPost()){
             $reply = input('post.');
-            $reply['atorIP'] = Request::instance() -> ip();
+            $ip = new GetIP();
+            $reply['atorIP'] = $ip -> GetIP();
 
             if($reply){
                 if($reply['replyContent'] == ''){
@@ -61,6 +66,7 @@ class Board extends Comm{
                 }else{
                     $insResult = db('replymessage') -> insert($reply);
                     $showReply = db('replymessage') -> where('status',1) -> order('replyTime desc') -> find();
+                    $showReply['replyTime'] = date('Y年m月d日H:i:s',strtotime($showReply['replyTime']));
                     if($insResult){
                         $info = array('code' => 1,'message' => '回复成功','data' => $showReply);
 

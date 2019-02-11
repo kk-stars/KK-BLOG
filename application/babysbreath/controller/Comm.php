@@ -2,6 +2,8 @@
 namespace app\babysbreath\controller;
 use think\Controller;
 use app\babysbreath\model\Operation;
+use think\Request;
+use app\index\model\GetIP;
 
 class Comm extends Controller{
 
@@ -15,20 +17,29 @@ class Comm extends Controller{
         $config = db('config') -> where('id','1') -> find();
         $this->assign('conf',$config);
 
-        $count = db('comment') -> where('status','1') -> count();
+        $messageCount = db('message') -> where('status','1') -> count();
         $adminCount = db('Admin') -> where('status','1') -> count();
         $articleCount = db('article') -> where('status','1') -> count();
         $friendshiplink = db('friendshiplink') -> where('status','1') -> count();
-        session('commentCount' , $count);       //评论数
-        session('adminCount' , $adminCount);    //管理员数
-        session('flinkCount' , $friendshiplink);//链接数
-        session('articleCount' , $articleCount);//文章数
+        
+        $ip = new GetIP();
+        $loginIP = $ip -> GetIP();
+        
+        $this -> assign([
+        		'messageCount' => $messageCount,//留言数
+        		'adminCount' => $adminCount,    //管理员数
+        		'flinkCount' => $friendshiplink,//链接数
+        		'articleCount' => $articleCount,//文章数
+        ]);
+        session('adminCount' , $adminCount);    
+        session('flinkCount' , $friendshiplink);
+        session('articleCount' , $articleCount);
 
         session('php',PHP_VERSION);             //php版本
         session('phpSapiName',php_sapi_name()); //php运行方式
         session('serverGetVersion',$_SERVER["SERVER_SOFTWARE"]);//服务器软件
         session('phpUnameS',php_uname('s'));    //操作系统
-        session('loginIP',$_SERVER['REMOTE_ADDR']);   //登陆者IP地址
+        session('loginIP',$loginIP);   //登陆者IP地址
 
         $mysql = 'select version();';           //原生查询mysql版本
         $result = \think\db::query($mysql);

@@ -26,9 +26,6 @@ class Setting extends Comm{
                 if(!isset($config['message'])){
                     $config['message'] = 0;
                 }
-                if(!isset($config['comment'])){
-                    $config['comment'] = 0;
-                }
                 if(!isset($config['code'])){
                     $config['code'] = 0;
                 }

@@ -5,6 +5,7 @@ use think\cache\driver\Redis;
 use think\Cookie;
 use think\Request;
 use app\index\model\RedisModel;
+use app\index\model\GetIP;
 
 class Comm extends Controller{
     public function _initialize(){
@@ -54,7 +55,8 @@ class Comm extends Controller{
         }
         $this->assign('about',$about);
 
-        $ip = Request::instance() -> ip(); // 获取用户IP地址
+        $ip = new GetIP();
+        $ip = $ip -> GetIP(); // 获取用户IP地址
         $res = explode('.', $ip);
         for($i = 0;$i < count($res);$i++){
             static $num = '';
@@ -65,12 +67,8 @@ class Comm extends Controller{
             cookie('ip_'.$num,$ip);
             db('config') -> where('id',1) -> setInc('visit');
         }else{}
-
-        $this -> comtArticles();
-
+        
         $this -> heatArticles();
-
-        $this -> praiseArticles();
 
         $aid = $redisM -> RedisGet('CommArticle');
         if($aid == 0){
@@ -78,25 +76,8 @@ class Comm extends Controller{
 
             $redis -> set('CommArticle',$aid,3600 * 24);
         }
-        foreach($aid as $k => $v){
-            $cid = db('comment') -> where('commentArticleid',$v['articleId']) -> count();
-            db('article') -> where('articleId',$v['articleId']) -> update(['articleComments' => $cid]);
-        }
 
 
-    }
-
-    //热门推荐  按comment评论排序
-    public function comtArticles(){
-        $redis = new Redis();
-        $redisM = new RedisModel();
-
-        $heat = $redisM -> RedisGet('comtArticles');
-        if($heat == 0){
-            $heat = db('article') -> where('status',1) -> order('articleComments desc') -> limit(5) -> select();
-            $redis -> set('comtArticles',$heat,3600 * 24);
-        }
-        $this -> assign('comtArticles',$heat);
     }
 
     //点击排序  按点击量排序
@@ -110,57 +91,6 @@ class Comm extends Controller{
             $redis -> set('heatArticles',$clicks,3600 * 24);
         }
         $this -> assign('heatArticles',$clicks);
-    }
-
-    //点赞排名  按点赞排序
-    public function praiseArticles(){
-        $redis = new Redis();
-        $redisM = new RedisModel();
-
-        $praise = $redisM -> RedisGet('praiseArticles');
-        if($praise == 0){
-            $praise = db('article') -> where('status',1) -> order('praiseClicks desc') -> limit(5) -> select();
-            $redis -> set('praiseArticles',$praise,3600 * 24);
-        }
-        $this -> assign('praiseArticles',$praise);
-
-    }
-
-    //点赞
-    public function Praise(){
-
-        $praise = input('post.');
-
-        if ($praise != null) {
-            $apnum = db('article') -> where('articleId',$praise['aid']) -> field('praiseClicks,articleId') -> find();
-            $pnum = $apnum['praiseClicks'];
-            $puid = $praise['puser'];
-
-            if( !isset( $_COOKIE['cpuser_'.$puid.'_'.$apnum['articleId']] ) ){
-                //如果没有设置 cookie【‘cpuser’】，说明此用户第一次点赞， 那么点赞
-                $pnum = $pnum + 1;//点赞数加一   点赞
-                db('article') -> where('articleId',$praise['aid']) -> update(['praiseClicks' => $pnum]);
-                Cookie::set('cpuser_'.$puid.'_'.$apnum['articleId'],$puid.'_'.$apnum['articleId']);//将用户id存放入cookie里，用来验证用户登录点赞的唯一性
-
-                $info = array('code' => 1,'message' => '点赞','pnum' => $pnum);
-
-            }elseif( $_COOKIE['cpuser_'.$puid.'_'.$apnum['articleId']]  ==  $puid.'_'.$apnum['articleId'] ){
-                //如果cookie里面保存的用户id 等于    前台提交过来的用户id，就说明此用户已点过赞
-                $pnum = $pnum - 1;//点赞数减一  取消赞
-                db('article') -> where('articleId',$praise['aid']) -> update(['praiseClicks' => $pnum]);
-                Cookie::delete( 'cpuser_'.$puid.'_'.$apnum['articleId'] );//取消赞后，将此用户id从cookie中删除
-
-                $info = array('code' => 0,'message' => '取消','pnum' => $pnum);
-
-            }else{
-                $info = array('code' => -1,'message' => '未知错误');
-            }
-        }else{
-            $info = array('code' => -2,'message' => '数据错误');
-        }
-
-        echo json_encode($info);die;
-
     }
 }
 

@@ -1,7 +1,7 @@
 <?php
 namespace app\babysbreath\model;
 use think\Model;
-use think\Request;
+use app\index\model\GetIP;
 
 class Operation extends Model{
 
@@ -16,18 +16,30 @@ class Operation extends Model{
         }else{
             //配置您申请的appkey
             $appkey = "ea92c4361076fa3f30c37d7d7e13e028";
-            $op_ip = '125.68.89.117'; //Request::instance() ->  ip(); // 获取用户IP地址
+            $op_ip = new GetIP();
+            $op_ip = $op_ip -> GetIP(); // 获取用户IP地址
 
-//************1.根据IP/域名查询地址************
-            $url = "http://apis.juhe.cn/ip/ip2addr";
-            $params = array(
-                "ip" => $op_ip,//需要查询的IP地址或域名
-                "key" => $appkey,//应用APPKEY(应用详细页查询)
-                "dtype" => "",//返回数据的格式,xml或json，默认json
-            );
-            $paramstring = http_build_query($params);
-            $content = $this -> juhecurl($url,$paramstring);
-            $result = json_decode($content,true);
+            if($op_ip != '0.0.0.0'){
+	//************1.根据IP/域名查询地址************
+	            $url = "http://apis.juhe.cn/ip/ip2addr";
+	            $params = array(
+	                "ip" => $op_ip,//需要查询的IP地址或域名
+	                "key" => $appkey,//应用APPKEY(应用详细页查询)
+	                "dtype" => "",//返回数据的格式,xml或json，默认json
+	            );
+	            $paramstring = http_build_query($params);
+	            $content = $this -> juhecurl($url,$paramstring);
+	            $result = json_decode($content,true);
+            }else{
+                $result = [
+                    'result' => [
+                        'area' => "未知城市",
+                        'location' => "未知运营商",
+                    ],
+                    'error_code' => '1',
+                    'reason' => "查询失败",
+                ];
+            }
             if($result){
                 if($result['error_code']=='0'){
                     //print_r($result);

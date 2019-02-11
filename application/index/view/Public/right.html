@@ -82,23 +82,13 @@
         });
     </script>
 
-
+	
     <!--热门推荐-->
     <div class="bg-fff box-shadow radius mb-20">
         <div class="tab-category">
-            <a href=""><strong>热门推荐</strong></a>
+            <a href=""><strong>热文配图</strong></a>
         </div>
-        <div class="tab-category-item">
-            <ul class="index_recd">
-                {volist name="comtArticles" id="ca"}
-                <li>
-                    <a href="article?aid={$ca.articleId}">{$ca.articleTitle}</a>
-                    <p class="hits"><i class="Hui-iconfont" title="点击量">&#xe622;</i> {$ca.articleComments} </p>
-                </li>
-                {/volist}
-                <!--五条数据-->
-            </ul>
-        </div>
+		<div id="cyWallsplugin" role="cylabs" data-use="wallsplugin"></div>
     </div>
 
     <!--点击排行-->
@@ -119,6 +109,15 @@
         </div>
     </div>
 
+	
+    <!--热门推荐-->
+    <div class="bg-fff box-shadow radius mb-20">
+        <div class="tab-category">
+            <a href=""><strong>最新评论</strong></a>
+        </div>
+		<div id="cyReping" role="cylabs" data-use="reping"></div>
+    </div>
+
     <!--标签-->
     <div class="bg-fff box-shadow radius mb-20">
         <div class="tab-category">
@@ -131,6 +130,17 @@
                 {/volist}
             </div>
         </div>
+    </div>
+
+	
+    <!--热门推荐-->
+    <div class="bg-fff box-shadow radius mb-20">
+        <div class="tab-category">
+            <a href=""><strong>热评用户</strong></a>
+        </div>
+		<div id="cyHotusers" role="cylabs" data-use="hotusers"></div>
+		<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyu3bqya0"></script>
     </div>
 
     <!--图片-->

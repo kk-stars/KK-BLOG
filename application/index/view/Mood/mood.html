@@ -53,7 +53,7 @@
                 </div>
                 <div class="cd-timeline-content">
                     <h4>{$m.moodTitle}</h4>
-                    <p><img width="520px" src="__PUBLIC__{$m.moodPic}"/>{$m.moodContent}</p>
+                    <p>{if condition="$m['moodPic'] neq null"}<img width="520px" src="__PUBLIC__{$m.moodPic}"/>{/if}{$m.moodContent}</p>
                     <span class="cd-date"><?php echo mb_substr($m['addTime'] ,0,10) ; ?></span>
                 </div>
             </div>
